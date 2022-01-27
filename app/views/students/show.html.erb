@@ -1,0 +1,29 @@
+<head>
+    <style>
+    body{
+        text-align:center;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding:10px;
+        text-align:center;
+      }
+    </style>
+</head>
+<body>
+<center>
+    <h1>Student details </h1>
+
+    <table>
+        <tr><td>First Name</td><td><%=@student.first_name %></td></tr>
+        <tr><td>Last Name</td><td><%=@student.last_name %></td></tr>
+        <tr><td>Date of Birth</td><td><%=@student.DOB.strftime("%d-%m-%Y") %></td></tr>
+        <tr><td>Department</td><td><%=@student.department %></td></tr>
+        <tr>
+        <td colspan=2><%= button_to 'Edit', edit_student_path(@student), method: 'get'%><br/>
+        <%= button_to 'Remove', student_path(@student), method: 'delete' %></td>  
+        </tr>
+    </table>
+</center>
+</body>

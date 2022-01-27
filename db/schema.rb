@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_141744) do
+ActiveRecord::Schema.define(version: 2022_01_27_112320) do
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name", null: false
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2022_01_24_141744) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "faculties", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "designation"
+    t.datetime "DOB", precision: 6
+    t.string "email_id"
+    t.integer "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "img_name"
     t.integer "author_id"
@@ -50,6 +61,16 @@ ActiveRecord::Schema.define(version: 2022_01_24_141744) do
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "DOB"
+    t.string "department"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "terms_of_service"
   end
 
   add_foreign_key "books", "authors"

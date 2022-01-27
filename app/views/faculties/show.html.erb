@@ -1,0 +1,31 @@
+<head>
+    <style>
+    body{
+        text-align:center;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding:10px;
+        text-align:center;
+      }
+    </style>
+</head>
+<body>
+<center>
+    <h1>Faculty details </h1>
+
+    <table>
+        <tr><td>First Name</td><td><%=@faculty.first_name %></td></tr>
+        <tr><td>Last Name</td><td><%=@faculty.last_name %></td></tr>
+        <tr><td>Date of Birth</td><td><%=@faculty.DOB.strftime("%d-%m-%Y") %></td></tr>
+        <tr><td>Email Id</td><td><%=@faculty.email_id %></td></tr>
+        <tr><td>Phone No</td><td><%=@faculty.phone %></td></tr>
+        <tr><td>Designation</td><td><%=@faculty.designation %></td></tr>
+        <tr>
+        <td colspan=2><%= button_to 'Edit', edit_faculty_path(@faculty), method: 'get'%><br/>
+        <%= button_to 'Remove', student_path(@faculty), method: 'delete' %></td>  
+        </tr>
+    </table>
+</center>
+</body>
