@@ -4,18 +4,17 @@ div{
 }
 </style>
 <h2>new faculty</h2>
-<%= form_with(model: @faculty) do |form| %>
-  <% if @faculty.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this article from being saved:</h2>
-
+<% if flash[:errors] %>
+    <div>
       <ul>
-        <% @faculty.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% flash[:errors].each do |error| %>
+          <li style="color:red;"><%= error %></li>
         <% end %>
       </ul>
     </div>
-  <% end %>
+<% end %>
+
+<%= form_with(model: @faculty) do |form| %>
     <div>
       <%= form.label :first_name, style: "display: block" %>
       <%= form.text_field :first_name %>

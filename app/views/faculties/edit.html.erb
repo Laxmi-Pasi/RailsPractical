@@ -3,20 +3,19 @@ div{
     margin:4px;
 }
 </style>
-<h2>new faculty</h2>
-<% if !@faculty.valid? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this article from being saved:</h2>
+<h2>Edit faculty</h2>
 
-    <ul>
-      <% @faculty.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-      <% end %>
-    </ul>
-  </div>
+<% if flash[:errors] %>
+    <div>
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li style="color:red;"><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
 <% end %>
 
-<%= form_for @faculty do |form| %>
+<%= form_with(model: @faculty, local: true )  do |form| %>
     
     <div>
       <%= form.label :first_name, style: "display: block" %>

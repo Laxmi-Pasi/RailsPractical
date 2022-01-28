@@ -8,11 +8,13 @@ class FacultiesController < ApplicationController
   end
 
   def create
-    f= Faculty.create(faculty_params)
-    if f.save
-      redirect_to faculties_path
+    faculty = Faculty.create(faculty_params)
+    if faculty.valid?
+      flash[:notice] = "Faculty is successfully added."
+      redirect_to faculty_path(faculty[:id])
     else
-      redirect_to new_faculty_path(@faculty)
+      flash[:errors] = faculty.errors.full_messages
+      redirect_to new_faculty_path(faculty)
     end
   end
 
@@ -22,8 +24,12 @@ class FacultiesController < ApplicationController
 
   def update
     @faculty = Faculty.find(params[:id])
-    @faculty.update(faculty_params)
-    redirect_to faculties_path
+    if @faculty.update(faculty_params)
+      redirect_to faculties_path
+    else
+      flash[:errors] = @faculty.errors.full_messages
+      redirect_to edit_faculty_path(@faculty)
+    end
   end
 
   def show

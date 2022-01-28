@@ -11,26 +11,26 @@
     <title> Students </title>
 </head>
 <body>
-    <table class="table">
+    <table class="table table-bordered table-hover">
         <tr><center>
             Students Details </center>
         </tr>
-        <tr>
+        <tr class="table table-dark">
             <td>First Name</td><td>Last Name</td><td>DOB</td><td>Department</td><td>Show</td>
             <td>Edit</td><td>Delete</td>
         </tr>
         <% @students.each do |s| %>
-            <tr>
+            <tr >
                 <td><%=s.first_name %></td>
                 <td><%=s.last_name %></td>
                 <td><%=s.DOB.strftime("%d-%m-%Y")   %></td>
                 <td><%=s.department %></td>
-                <td><%= button_to 'Show', student_path(s), method: 'get'%></td>
-                <td><%= button_to 'Edit', edit_student_path(s), method: 'get'%></td>
-                <td><%= button_to 'Remove', student_path(s), method: 'delete' %></td>  
+                <td><%= button_to 'Show', student_path(s), method: 'get', class:"btn btn-info"%></td>
+                <td><%= button_to 'Edit', edit_student_path(s), method: 'get', class:" btn btn-dark"%></td>
+                <td><%= button_to 'delete', student_path(s), method: 'delete',class:"btn btn-danger" %></td>  
             </tr>
         <% end %>
     </table>
-    <%= link_to "Add a New student", new_student_path %>
+    <%= button_to "Add a New student", new_student_path,class:"btn btn-success",method: 'get' %>
 </body>
 </html>

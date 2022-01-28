@@ -1,7 +1,7 @@
 class Faculty < ApplicationRecord
   t=Time.new
   t1=t.strftime("%d/%m/%Y")
-  validates :first_name, :last_name,:email_id, presence: true, on: :create
+  validates :first_name, :last_name,:email_id, presence: true
   validates :email_id, uniqueness: true
   validate :desgination_of_faculty
   validates :DOB, comparison: { less_than_or_equal_to: t1, message: "birthdate can't be in future"}
