@@ -1,0 +1,11 @@
+<h1> new User image uploading </h1>
+
+<% if @user.avatar.attache? %>
+  <image src="<%=(url_for(@user.avatar))%>">
+<% end %>
+
+<%= form_with(model: @user) do |form| %>
+  <%=form.label 'Profile Photo' %>
+  <%=form.file_field :avatar %>
+  <%=form.submit %>
+<% end %>
