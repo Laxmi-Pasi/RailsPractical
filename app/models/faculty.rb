@@ -15,5 +15,5 @@ class Faculty < ApplicationRecord
       errors.add(:designation, "must  be any from Ass.Prof and Prof. ")
     end
   end
-  
+
 end

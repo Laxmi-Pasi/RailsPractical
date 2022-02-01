@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
   def index
     @students=Student.all
   end
-
+  
   def new
     @student = Student.new
   end
@@ -39,7 +39,6 @@ class StudentsController < ApplicationController
   def destroy
     @student = Student.find(params[:id])
     @student.destroy
-
     redirect_to students_path
   end
 

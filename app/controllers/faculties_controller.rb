@@ -39,7 +39,6 @@ class FacultiesController < ApplicationController
   def destroy
     @faculty = Faculty.find(params[:id])
     @faculty.destroy
-
     redirect_to faculties_path
   end
 

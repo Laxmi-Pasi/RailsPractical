@@ -1,25 +1,24 @@
 <head>
-    <style>
+  <style>
     body{
-        text-align:center;
+      text-align:center;
     }
     table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding:10px;
-        text-align:center;
-      }
-    </style>
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding:10px;
+      text-align:center;
+    }
+  </style>
 </head>
 <body>
-<center>
+  <center>
     <h1>Book Table </h1>
-
     <table>
-
-        <tr><td>Book Name</td><td>Price</td><td>Author first_name</td><td>Author last_name</td>
+      <tr>
+        <td>Book Name</td><td>Price</td><td>Author first_name</td><td>Author last_name</td>
         <td>Author dob</td><td>Author email</td><td>Edit</td><td>Delete</td></tr>
-        <tr>
+      <tr>
         <td><%=@book.name %></td>
         <td><%=@book.price %></td>
         <td><%=@book.author.first_name%></td>
@@ -28,8 +27,7 @@
         <td><%=@book.author.email %></td>   
         <td><%= button_to 'Edit', edit_book_path(@book), method: 'get'%></td>
         <td><%= button_to 'Remove', book_path(@book), method: 'delete' %></td>  
-        </tr>
-    
+      </tr>
     </table>
-</center>
+  </center>
 </body>
