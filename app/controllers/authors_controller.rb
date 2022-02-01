@@ -6,7 +6,6 @@ class AuthorsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -15,28 +14,23 @@ class AuthorsController < ApplicationController
 
   def create
     a = Author.create(author_params)
-
     redirect_to authors_path
   end
 
   def edit
-
   end
 
   def update
     @author.update(author_params)
-
     redirect_to authors_path
   end
 
   def destroy
     @author.destroy
-
     redirect_to authors_path
   end
 
   private
-
   def author_params
     params.require(:author).permit(:first_name, :last_name, :dob, :email)
   end

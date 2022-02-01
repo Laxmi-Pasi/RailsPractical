@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  
+
   def index
     @img=Image.all
   end
@@ -14,7 +14,6 @@ class ImagesController < ApplicationController
 
   def create
     img = Image.create(image_params)
-
     redirect_to images_path
   end
 
@@ -31,7 +30,6 @@ class ImagesController < ApplicationController
   def destroy
     @img = Image.find(params[:id])
     @img.destroy
-
     redirect_to images_path
   end
 
