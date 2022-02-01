@@ -1,9 +1,8 @@
 <h1> new Author </h1>
-
 <%= form_with model: @author do |form| %>
-    <%= form.text_field :first_name, placeholder: 'first name' %><br/>
-    <%= form.text_field :last_name, placeholder: 'last name' %><br/>
-    <%= form.date_field :dob, placeholder: 'date of birth(dd-mm-yyyy)' %><br/>
-    <%= form.text_field :email, placeholder: 'email' %><br/>
-    <%= form.submit %>
+  <%= form.text_field :first_name, placeholder: 'first name' %><br/>
+  <%= form.text_field :last_name, placeholder: 'last name' %><br/>
+  <%= form.date_field :dob, placeholder: 'date of birth(dd-mm-yyyy)' %><br/>
+  <%= form.text_field :email, placeholder: 'email' %><br/>
+  <%= form.submit %>
 <% end %>

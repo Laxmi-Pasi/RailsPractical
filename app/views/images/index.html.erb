@@ -1,5 +1,5 @@
 <head>
-    <style>
+  <style>
     body{
         text-align:center;
     }
@@ -9,24 +9,24 @@
         padding:10px;
         text-align:center;
       }
-    </style>
+  </style>
 </head>
 <body>
 <center>
-    <h1>Image Table </h1>
-
-    <table>
-
-        <tr><td>Image Name</td><td>Show</td><td>Edit</td><td>Delete</td></tr>
+  <h1>Image Table </h1>
+  <table>
+    <tr>
+      <td>Image Name</td><td>Show</td><td>Edit</td><td>Delete</td>
+    </tr>
     <% @img.each do |img| %>
-        <tr>
-            <td><%=img.img_name %></td>
-            <td><%= button_to 'Show', image_path(img), method: 'get'%></td>
-            <td><%= button_to 'Edit', edit_image_path(img), method: 'get'%></td>
-            <td><%= button_to 'Remove', image_path(img), method: 'delete' %></td> 
-        </tr>
+    <tr>
+      <td><%=img.img_name %></td>
+      <td><%= button_to 'Show', image_path(img), method: 'get'%></td>
+      <td><%= button_to 'Edit', edit_image_path(img), method: 'get'%></td>
+      <td><%= button_to 'Remove', image_path(img), method: 'delete' %></td> 
+    </tr>
     <% end %>
-    </table>
-    <%= link_to "Add a New Book", new_image_path %>
+  </table>
+  <%= link_to "Add a New Book", new_image_path %>
 </center>
 </body>
