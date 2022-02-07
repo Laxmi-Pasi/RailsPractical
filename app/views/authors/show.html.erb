@@ -15,8 +15,15 @@
   <center>
     <h1>Author </h1>
     <table>
+<<<<<<< HEAD
       <tr><td>Author first_name</td><td>Author last_name</td>
           <td>Author dob</td><td>Author email</td><td>Edit</td><td>Delete</td></tr>
+=======
+      <tr>
+        <td>Author first_name</td><td>Author last_name</td>
+        <td>Author dob</td><td>Author email</td><td>Edit</td><td>Delete</td>
+      </tr>
+>>>>>>> d624882100b8bd72346d3bce20bac6fb96d2a722
       <tr>
         <td><%=@author.first_name%></td>
         <td><%=@author.last_name %></td>
@@ -24,7 +31,11 @@
         <td><%=@author.email %></td>   
         <td><%= button_to 'Edit', edit_author_path(@author), method: 'get'%></td>
         <td><%= button_to 'Remove', author_path(@author), method: 'delete' %></td>  
+<<<<<<< HEAD
       </tr>  
+=======
+      </tr>
+>>>>>>> d624882100b8bd72346d3bce20bac6fb96d2a722
     </table>
   </center>
 </body>
