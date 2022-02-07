@@ -1,0 +1,7 @@
+<h1> new Image </h1>
+<%= form_with model: @img do |form| %>
+  <%= form.text_field :img_name, placeholder: 'name' %>
+  <%= form.number_field :author_id, placeholder: 'author id' %>
+  <%= form.number_field :book_id, placeholder: 'book id' %>
+  <%= form.submit %>
+<% end %>
