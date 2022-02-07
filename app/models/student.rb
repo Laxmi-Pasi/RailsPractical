@@ -12,4 +12,7 @@ class Student < ApplicationRecord
       errors.add(:department, "can't be #{department} ")
     end
   end
+  def name
+    "I am #{first_name}"
+  end
 end

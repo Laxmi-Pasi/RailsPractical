@@ -24,6 +24,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to books_path
+    # if @book.update_with_conflict_validation(book_params)
+    #   redirect_to books_path
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
