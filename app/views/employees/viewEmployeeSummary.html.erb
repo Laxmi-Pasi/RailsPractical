@@ -13,7 +13,7 @@
 <body>
   <center>
     <h1>Employee Summary  </h1>
-    <table  class="table table-primary">
+    <table style="width:auto" class="table table-striped table-bordered">
       <tr><td>List Employees having age > 20 and < 40</td><td><%=Employee.where('age > 20 and age <40').count %></td></tr>
       <tr><td>List Employees which are full time Avaialable</td><td><%=Employee.where(full_time_available:'Yes').count %></td></tr>
       <tr><td>List employees which have exact 5 number of orders and age>25</td><td><%=Employee.where('no_of_order=5 and age>25').count%></td></tr>
@@ -21,35 +21,57 @@
       <tr><td>List employees which have exact 5 number of orders and age<25</td><td><%=Employee.where('no_of_order=5 and age<25').count%></td></tr>
       <tr>
         <td>List employees in descending order by age<25</td>
-        <td><%=Employee.order('age desc').pluck(:first_name,:age)%></td>
+        <td>
+          <ul>
+            <% Employee.where('age < 25').order('age desc').each do |e|%> 
+            <li><%="first_name: #{e.first_name} and age: #{e.age}"%></li>
+            <% end %>
+          </ul>
+        </td>
       </tr>
       <tr>
         <td>List employees in ascending order by number of order</td>
-        <td><%=Employee.order(:no_of_order).pluck(:first_name,:no_of_order)%></td>
+        <td>
+          <ul>
+            <% Employee.order(:no_of_order).each do |e|%> 
+            <li><%="first_name: #{e.first_name} and no of order: #{e.no_of_order}"%></li>
+            <% end %>
+          </ul>
+        </td>
       </tr>
       <tr>
         <td>List employees having salary>45000</td>
-        <td><%=Employee.where('salary > 45000').pluck(:first_name,:salary)%></td>
+        <td><%=Employee.where('salary > 45000').count%></td>
       </tr>
       <tr>
         <td>Group employees by no_of_order with them and display employee with no_of_order>5</td>
         <td><%=Employee.group(:no_of_order).having("Count(*)>5").pluck(:no_of_order)%></td>
       </tr>
       <tr>
-        <td>Employee.where('id >4').order('id desc').unscope(:order).pluck(:id)</td>
+        <td>Employee.where('id >4').order('id desc').unscope(:order)</td>
         <td><%=Employee.where('id >4').order('id desc').unscope(:order).pluck(:id)%></td>
       </tr>
       <tr>
-        <td>Employee.where('id >4').order('id desc').only(:order).pluck(:id)</td>
+        <td>Employee.where('id >4').order('id desc').only(:order)</td>
         <td><%=Employee.where('id >4').order('id desc').only(:order).pluck(:id)%></td>
       </tr>
       <tr>
-        <td>Employee.select('id >4').reselect(:id,:first_name)</td>
-        <td><%=Employee.select('id >4').reselect(:id,:first_name).pluck(:id,:first_name)%></td>
+        <td>Employee.select(:id).reselect(:id,:first_name)</td>
+        <td>
+          <ul>
+            <% Employee.select(:id).reselect(:id,:first_name).each do |e|%> 
+            <li><%="id : #{e.id} and first_name: #{e.first_name}"%></li>
+            <% end %>
+          </ul>
+        </td>
       </tr>
       <tr>
-        <td>Employee.order('id desc').reorder(:id).pluck(:id)</td>
+        <td>Employee.order('id desc').reorder(:id)</td>
         <td><%=Employee.order('id desc').reorder(:id).pluck(:id)%></td>
+      </tr>
+      <tr>
+        <td>Employee.where("id>4").reverse_order</td>
+        <td><%=Employee.where("id>4").reverse_order.pluck(:id)%></td>
       </tr>
     </table>
     <%= button_to "Home", employees_path, class:"btn btn-primary", method: 'get'%>

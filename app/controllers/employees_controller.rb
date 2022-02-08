@@ -1,6 +1,18 @@
 class EmployeesController < ApplicationController
+  
   def index
     @employees=Employee.all
+    if params[:search]
+      if Employee.find_by("email = ?",params[:search])
+        flash[:notice]="Email is present"
+      else
+        flash[:notice]="Email is not present"
+      end
+    end
+  end
+
+  def save
+    puts :email
   end
 
   def new
@@ -31,7 +43,6 @@ class EmployeesController < ApplicationController
       redirect_to edit_employee_path(@employee)
     end
   end
-
 
   def viewEmployeeSummary
   end
