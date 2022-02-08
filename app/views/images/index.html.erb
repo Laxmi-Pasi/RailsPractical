@@ -1,9 +1,34 @@
 <head>
   <style>
     body{
-        text-align:center;
+      text-align:center;
     }
     table, th, td {
+<<<<<<< HEAD
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding:10px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <h1>Image Table </h1>
+    <table>
+      <tr><td>Image Name</td><td>Show</td><td>Edit</td><td>Delete</td></tr>
+      <% @img.each do |img| %>
+        <tr>
+          <td><%=img.img_name %></td>
+          <td><%= button_to 'Show', image_path(img), method: 'get'%></td>
+          <td><%= button_to 'Edit', edit_image_path(img), method: 'get'%></td>
+          <td><%= button_to 'Remove', image_path(img), method: 'delete' %></td> 
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add a New Book", new_image_path %>
+  </center>
+=======
         border: 1px solid black;
         border-collapse: collapse;
         padding:10px;
@@ -29,4 +54,5 @@
   </table>
   <%= link_to "Add a New Book", new_image_path %>
 </center>
+>>>>>>> d624882100b8bd72346d3bce20bac6fb96d2a722
 </body>
