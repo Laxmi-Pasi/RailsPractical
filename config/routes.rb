@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  resources :products
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
+  resources :customers
+  resources :orders
+  #resources :products
+  resources :products, only: [:index, :show, :delete, :new, :create, :edit, :update] do
+    collection do
+      get :display_all_products
+      get :display_products_which_is_active
+    end
+  end
+  #get "products/display_all_product", to:"products#display_all_product"
   root "articles#index"
   get "/articles", to: "articles#index"
 end

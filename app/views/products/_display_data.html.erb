@@ -14,21 +14,21 @@
   <table class="table table-striped">
     <tr><center>Products Details </center></tr>
     <tr class="table table-dark">
-    <td>Id</td><td>Name</td><td>Price</td><td>Show</td><td>Edit</td><td>Delete</td>
+    <td>Id</td><td>Name</td><td>Title</td><td>Description</td><td>Price</td><td>Capacity</td><td>Is Active</td><td>Status</td>
     </tr>
     <% @products.each do |s| %>
       <tr>
         <td><%=s.id %></td>
         <td><%=s.name %></td>
+        <td><%=s.title %></td>
+        <td><%=s.description %></td>
         <td><%=s.price %></td>
-        <td><%= button_to 'Show', product_path(s), method: 'get',class:"btn btn-info"%></td>
-        <td><%= button_to 'Edit', edit_product_path(s), method: 'get',class:"btn btn-dark"%></td>
-        <td class=""><%= button_to 'Remove', product_path(s), method: 'delete',class:"btn btn-danger"%></td>  
+        <td><%=s.capacity %></td>
+        <td><%=s.is_active %></td>
+        <td><%=s.status %></td>
       </tr>
     <% end %>
   </table>
-  <%= link_to "Add a New Product", new_product_path %> <br/>
-  <%= link_to "Display all Product ", display_all_products_products_path %><br/>
-  <%= link_to "Display Products which is active ", display_products_which_is_active_products_path %>
+  <%= link_to "home page", products_path %>
 </body>
 </html>
