@@ -1,6 +1,6 @@
-<h2> Order Details </h2>
 <p style="color: green"><%= notice %></p>
 <div>
+  <h4 style="color:blue;">----------Customer Details------------ </h4>
   <p>
     <strong>First Name:</strong>
     <%= @order.customer.fname %>
@@ -17,7 +17,7 @@
     <strong>Phone Number:</strong>
     <%= @order.customer.phone_number %>
   </p>
-
+  <h4 style="color:green;">----------Product Details------------- </h4>
   <p>
     <strong>Product Name:</strong>
     <%= @order.product.name %>
@@ -27,7 +27,11 @@
     <strong>Product Price:</strong>
     <%= @order.product.price %>
   </p>
-
+  <p>
+    <strong>Product Status:</strong>
+    <%= @order.product.status %>
+  </p>
+  <h4 style="color:blue;">------------Order Details-------------- </h4>
   <p>
     <strong>Quantity:</strong>
     <%= @order.quantity %>
@@ -36,6 +40,10 @@
   <p>
     <strong>Total Price:</strong>
     <%= @order.total_price %>
+  </p>
+  <p>
+    <strong>Status:</strong>
+    <%= @order.status %>
   </p>
 </div>
 <div>

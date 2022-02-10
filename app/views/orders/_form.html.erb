@@ -21,10 +21,10 @@
     <%= form.select :product_id, Product.all.map { |t| [t.name, t.id]}%>
   </div>
 
-  <!--<div style="margin:10px;">
+  <div style="margin:10px;">
     <%= form.label :customer_id, style: "display: block" %>
     <%= form.select :customer_id, Customer.all.map { |t| [t.fname+" "+t.lname, t.id]}%>
-  </div>-->
+  </div>
   
   <!--<div style="margin:10px;">
     <%= form.label :total_price, style: "display: block" %>

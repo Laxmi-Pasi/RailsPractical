@@ -27,5 +27,9 @@
     <strong>Status:</strong>
     <%= product.status %>
   </p>
+  <p style="color:red">
+    <strong>No of orders for this product is :</strong>
+    <%= Order.where('product_id=?',product).count %>
+  </p>
 
 </div>

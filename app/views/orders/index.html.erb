@@ -14,13 +14,19 @@
   <table class="table table-striped">
     <tr><center>Orders Details </center></tr>
     <tr class="table table-dark">
-    <td>Id</td><td>Product Id</td><td>Customer Id</td><td>Show</td><td>Edit</td><td>Delete</td>
+    <td>Id</td><td>Product Id</td><td>Customer Id</td><td>Customer Name</td><td>Customer Email</td>
+    <td>Customer Phone</td><td>Order status </td>
+    <td>Show</td><td>Edit</td><td>Delete</td>
     </tr>
     <% @orders.each do |s| %>
       <tr>
         <td><%=s.id %></td>
         <td><%=s.product_id %></td>
         <td><%=s.customer_id %></td>
+        <td><%=s.customer.fname+" "+s.customer.lname  %></td>
+        <td><%=s.customer.email %></td>
+        <td><%=s.customer.phone_number %></td>
+        <td><%=s.status %></td>
         <td><%= button_to 'Show', order_path(s), method: 'get',class:"btn btn-info"%></td>
         <td><%= button_to 'Edit', edit_order_path(s), method: 'get',class:"btn btn-dark"%></td>
         <td class=""><%= button_to 'Remove', order_path(s), method: 'delete',class:"btn btn-danger"%></td>  
