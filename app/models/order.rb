@@ -10,4 +10,5 @@ class Order < ApplicationRecord
       product_price=Product.where("id = ?",product_id).pluck(:price)
       self.total_price=product_price[0] * quantity
     end
+    
 end

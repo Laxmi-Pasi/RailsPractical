@@ -2,6 +2,15 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    if params[:search]
+      if params[:search]=="booked"
+        @orders=Order.where(status:'booked')
+      elsif params[:search]=="cancelled"
+        @orders=Order.where(status:'cancelled')
+      else
+        @orders = Order.all
+      end
+    end
   end
 
   def show
@@ -50,6 +59,12 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def search_order_by_product_name
+    if params[:search]
+      @order_id=Order.where("product_id=?",(Product.where("name=?",params[:search]).pluck(:id)))
     end
   end
 

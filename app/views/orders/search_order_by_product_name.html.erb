@@ -12,36 +12,31 @@
 </head>
 <body>
   <table class="table table-striped">
-    <tr><td colspan="5"><center>Orders Details </center></td><td colspan="5">
+    <tr><td>
     <div>
-    <%= form_tag orders_path, :method => 'get', class: 'input-group'  do %>
-      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search by order status' %>
+    <%= form_tag search_order_by_product_name_orders_path, :method => 'get', class: 'input-group'  do %>
+      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search by product name' %>
       <span class="input-group-btn">
         <%= submit_tag "search", class: "btn btn-success btn-md" %>
       </span>
     <% end %>
     </div></td>
     </tr>
+    <% if params[:search]%>
     <tr class="table table-dark">
-    <td>Id</td><td>Product Id</td><td>Customer Id</td><td>Customer Name</td><td>Customer Email</td>
-    <td>Customer Phone</td><td>Order status </td>
-    <td>Show</td><td>Edit</td><td>Delete</td>
+    <td>Order Id</td><td>Product Name</td><td>Quantity</td><td>Total Price</td><td>Order Status</td>
     </tr>
-    <% @orders.each do |s| %>
-      <tr>
-        <td><%=s.id %></td>
-        <td><%=s.product_id %></td>
-        <td><%=s.customer_id %></td>
-        <td><%=s.customer.fname+" "+s.customer.lname  %></td>
-        <td><%=s.customer.email %></td>
-        <td><%=s.customer.phone_number %></td>
-        <td><%=s.status %></td>
-        <td><%= button_to 'Show', order_path(s), method: 'get',class:"btn btn-info"%></td>
-        <td><%= button_to 'Edit', edit_order_path(s), method: 'get',class:"btn btn-dark"%></td>
-        <td class=""><%= button_to 'Remove', order_path(s), method: 'delete',class:"btn btn-danger"%></td>  
-      </tr>
+    <% @order_id.each do |s| %>
+    <tr>
+      <td><%=s.id %></td>
+      <td><%=s.product.name %></td>
+      <td><%=s.quantity%></td>
+      <td><%=s.total_price%></td>
+      <td><%=s.status%></td>
+    </tr>
+    <% end %>
+    <tr><td colspan="5"><center><%= link_to "back to home page", articles_path %></center></td></tr>
     <% end %>
   </table>
-  <%= link_to "Add a New Order", new_order_path %> <br/>
 </body>
 </html>
