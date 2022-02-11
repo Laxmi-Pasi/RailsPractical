@@ -12,6 +12,7 @@ class Student < ApplicationRecord
       errors.add(:department, "can't be #{department} ")
     end
   end
+<<<<<<< HEAD
 
   #callback
   before_validation :normalize_name
@@ -64,4 +65,9 @@ class Student < ApplicationRecord
     puts "this is the confirmation that your record is deleted."
   end
  
+=======
+  def name
+    "I am #{first_name}"
+  end
+>>>>>>> 94f444ad23b51f2ddd16197e2241e6a8cad9895b
 end
