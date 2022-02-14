@@ -20,7 +20,11 @@
     <%= form.label :description, style: "display: block" %>
     <%= form.text_field :description %>
   </div>
-
+  
+  <!--<div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.select :user_id, User.all.map { |t| [t.username, t.id]}%> 
+  </div> -->
   <div>
     <%= form.label :event_date, style: "display: block" %>
     <%= form.date_field :event_date %>

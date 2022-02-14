@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <div style="background-color:yellow;text-align:right"> <%= link_to 'Log Out', users_path %> </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

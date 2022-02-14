@@ -1,0 +1,12 @@
+<p style="color:green;">
+<% if flash[:notice] %>
+  <%=flash[:notice] %>
+<% end %>
+</p>
+<h4>Users Profile </h4>
+<p>Username:<%= @user.username %></p>
+<p>Email:<%= @user.email %></p>
+<%
+<p><%= link_to 'Your Events', events_path(@events) %></p>
+
+<p></p>
