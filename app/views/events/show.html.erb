@@ -1,0 +1,26 @@
+<h2>Event Details </h2>
+<div>
+  <p>
+    <strong>Event Id:</strong>
+    <%= @event.id %>
+  </p>
+  <p>
+    <strong>Name:</strong>
+    <%= @event.name %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description%>
+  </p>
+  <p>
+    <strong>Event Date:</strong>
+    <%= @event.event_date %>
+  </p>
+</div>
+
+<div>
+  <%= link_to "Edit this event", edit_event_path(@event) %> <br/><br/>
+  <%= link_to "Back to events", events_path %><br/><br/>
+
+  <%= button_to "Destroy this event", @event, method: :delete %>
+</div>
