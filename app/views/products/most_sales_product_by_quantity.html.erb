@@ -1,0 +1,24 @@
+<p style="color:red;">Top 3 customers who has max sum of quantity </p>
+<% Order.select("customer_id, sum(quantity) as Sum_of_Quantity").group("customer_id").order(Sum_of_Quantity: :desc).first(3).each do |a| %>
+  <p>
+    <strong> Sum of Quantity:</strong>
+    <%= a.Sum_of_Quantity %>
+  </p>
+  <p>
+    <strong>First Name:</strong>
+    <%= a.customer.fname %>
+  </p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= a.customer.lname %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= a.customer.email%>
+  </p>
+  <p>
+    <strong>Phone Number:</strong>
+    <%= a.customer.phone_number %>
+  </p>
+  <p>----------------------------------------------------------------</p>
+<% end %>

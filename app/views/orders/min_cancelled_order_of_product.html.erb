@@ -1,0 +1,24 @@
+<p style="color:red;">top 5 customer who has Minimum cancelled orders ( status booked )</p>
+<% Order.group(:customer_id).having(status:'cancelled').first(5).each do |a| %>
+  <p>
+    <strong> Total no of cancelled order:</strong>
+    <%= Order.where(customer_id:a.customer_id).where(status:'cancelled').count %>
+  </p>
+  <p>
+    <strong>First Name:</strong>
+    <%= a.customer.fname %>
+  </p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= a.customer.lname %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= a.customer.email%>
+  </p>
+  <p>
+    <strong>Phone Number:</strong>
+    <%= a.customer.phone_number %>
+  </p>
+  <p>----------------------------------------------------------------</p>
+<% end %>

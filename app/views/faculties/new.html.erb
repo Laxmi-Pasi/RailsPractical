@@ -1,0 +1,51 @@
+<style>
+  div{
+      margin:4px;
+  }
+</style>
+<h2>new faculty</h2>
+<% if flash[:errors] %>
+  <div>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li style="color:red;"><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @faculty) do |form| %>
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+  
+  <div>   
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+    
+  <div>
+    <%= form.label :DOB, style: "display: block" %>
+    <%= form.date_field :DOB %>
+  </div>
+    
+  <div>
+    <%= form.label :designation, style: "display: block" %>
+    <%= form.select :designation, ['Ass. Prof', 'Prof']%>
+  </div>
+  <div>
+    <%= form.label :email_id, style: "display: block" %> 
+    <%=form.text_field :email_id%>
+  </div>
+
+  <div>
+    <%= form.label :phone, style: "display: block" %> 
+    <%=form.text_field:phone%>
+  </div>
+  <div>
+    <br/><%= form.submit %>
+  </div>
+<% end %>
+
+ 

@@ -1,0 +1,35 @@
+<head>
+  <style>
+    body{
+      text-align:center;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding:10px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <% if flash[:notice] %> 
+      <% flash.each do |name,msg| %>
+        <h3 style="color:green;"><%= msg %></h3>
+      <% end %>
+    <% end %>
+    <h4>Faculty details </h4>
+    <table>
+      <tr><td>First Name</td><td><%=@faculty.first_name %></td></tr>
+      <tr><td>Last Name</td><td><%=@faculty.last_name %></td></tr>
+      <tr><td>Date of Birth</td><td><%=@faculty.DOB.strftime("%d-%m-%Y") %></td></tr>
+      <tr><td>Email Id</td><td><%=@faculty.email_id %></td></tr>
+      <tr><td>Phone No</td><td><%=@faculty.phone %></td></tr>
+      <tr><td>Designation</td><td><%=@faculty.designation %></td></tr>
+      </table>
+      <%= link_to "Add a New Faculty", new_faculty_path %>
+      <%= link_to 'Edit', edit_faculty_path(@faculty), method: 'get'%>
+      <%= link_to 'Remove', faculty_path(@faculty), method: 'delete' %>
+      <%= link_to 'Home', faculties_path, method: 'get' %>
+  </center>
+</body>
