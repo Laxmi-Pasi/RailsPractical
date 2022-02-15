@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   resources :customers
-  #resources :orders
-  #resources :products
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :display_all_products
@@ -17,6 +15,15 @@ Rails.application.routes.draw do
       get :search_order_by_product_name
     end
   end
+  get 'employees/viewEmployeeSummary'
+  resources :products
+  resources :employees
+  resources :authors
+  resources :images
+  resources :books
+  resources :products
+  resources :students
+  resources :faculties
   root "articles#index"
   get "/articles", to: "articles#index"
 end
