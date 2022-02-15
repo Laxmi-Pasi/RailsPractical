@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 2022_02_03_130031) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "fname"
+    t.string "lname"
+    t.string "email"
+    t.integer "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -105,11 +114,26 @@ ActiveRecord::Schema.define(version: 2022_02_03_130031) do
     t.decimal "img_size"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.float "total_price"
+    t.integer "product_id"
+    t.integer "customer_id"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.string "description"
+    t.float "capacity"
+    t.boolean "is_active"
+    t.integer "status"
   end
 
   create_table "students", force: :cascade do |t|
@@ -133,7 +157,6 @@ ActiveRecord::Schema.define(version: 2022_02_03_130031) do
     t.string "password"
     t.integer "phone"
   end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "authors"

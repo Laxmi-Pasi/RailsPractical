@@ -8,27 +8,35 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  <title> Product </title>
+  <title> Order </title>
 </head>
 <body>
   <table class="table table-striped">
-    <tr><center>Products Details </center></tr>
-    <tr class="table table-dark">
-    <td>Id</td><td>Name</td><td>Price</td><td>Show</td><td>Edit</td><td>Delete</td>
+    <tr><td>
+    <div>
+    <%= form_tag search_order_by_product_name_orders_path, :method => 'get', class: 'input-group'  do %>
+      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search by product name' %>
+      <span class="input-group-btn">
+        <%= submit_tag "search", class: "btn btn-success btn-md" %>
+      </span>
+    <% end %>
+    </div></td>
     </tr>
-    <% @products.each do |s| %>
-      <tr>
-        <td><%=s.id %></td>
-        <td><%=s.name %></td>
-        <td><%=s.price %></td>
-        <td><%= button_to 'Show', product_path(s), method: 'get',class:"btn btn-info"%></td>
-        <td><%= button_to 'Edit', edit_product_path(s), method: 'get',class:"btn btn-dark"%></td>
-        <td><%= button_to 'Remove', product_path(s), method: 'delete',class:"btn btn-danger"%></td>  
-      </tr>
+    <% if params[:search]%>
+    <tr class="table table-dark">
+    <td>Order Id</td><td>Product Name</td><td>Quantity</td><td>Total Price</td><td>Order Status</td>
+    </tr>
+    <% @order_id.each do |s| %>
+    <tr>
+      <td><%=s.id %></td>
+      <td><%=s.product.name %></td>
+      <td><%=s.quantity%></td>
+      <td><%=s.total_price%></td>
+      <td><%=s.status%></td>
+    </tr>
+    <% end %>
+    <tr><td colspan="5"><center><%= link_to "back to home page", articles_path %></center></td></tr>
     <% end %>
   </table>
-  <%= link_to "Add a New Product", new_product_path %> <br/>
-  <%= link_to "Display all Product ", display_all_products_products_path %><br/>
-  <%= link_to "Display Products which is active ", display_products_which_is_active_products_path %>
 </body>
 </html>
