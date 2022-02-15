@@ -4,7 +4,6 @@
       text-align:center;
     }
     table, th, td {
-<<<<<<< HEAD
       border: 1px solid black;
       border-collapse: collapse;
       padding:10px;
@@ -28,29 +27,4 @@
     </table>
     <%= link_to "Add a New Author", new_author_path %>
   </center>
-=======
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding:10px;
-        text-align:center;
-      }
-  </style>
-</head>
-<body>
-<center>
-  <h1>Author Table </h1>
-  <table>
-    <tr><td>Author Name</td><td>Show</td><td>Edit</td><td>Delete</td></tr>
-  <% @authors.each do |author| %>
-    <tr>
-      <td><%=author.first_name %>  <%=author.last_name %></td>
-      <td><%= button_to 'Show', author_path(author), method: 'get'%></td>
-      <td><%= button_to 'Edit', edit_author_path(author), method: 'get'%></td>
-      <td><%= button_to 'Remove', author_path(author), method: 'delete' %></td> 
-    </tr>
-  <% end %>
-  </table>
-  <%= link_to "Add a New Author", new_author_path %>
-</center>
->>>>>>> d624882100b8bd72346d3bce20bac6fb96d2a722
 </body>

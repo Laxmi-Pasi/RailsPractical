@@ -6,14 +6,6 @@ class Student < ApplicationRecord
   validates :DOB, comparison: { less_than_or_equal_to: t1, message: " can't be in future"}
   validates :terms_of_service, acceptance: { message: 'You cannot proceed without accepting Terms of Usage' }
   
-  def department_can_be_only_CE_or_IT
-    if (department == "IT" || department == "CE")
-    else
-      errors.add(:department, "can't be #{department} ")
-    end
-  end
-<<<<<<< HEAD
-
   #callback
   before_validation :normalize_name
   before_validation  :DOB_validated
@@ -22,6 +14,14 @@ class Student < ApplicationRecord
   # after_destroy :show_destroy
   after_save  :show_save
   after_destroy :call_after_destroy_commit, if: after_destroy_commit
+
+  def department_can_be_only_CE_or_IT
+    if (department == "IT" || department == "CE")
+    else
+      errors.add(:department, "can't be #{department} ")
+    end
+  end
+
   private
 
   after_initialize do |student|
@@ -65,9 +65,4 @@ class Student < ApplicationRecord
     puts "this is the confirmation that your record is deleted."
   end
  
-=======
-  def name
-    "I am #{first_name}"
-  end
->>>>>>> 94f444ad23b51f2ddd16197e2241e6a8cad9895b
 end
