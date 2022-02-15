@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    # @articles = @user.articles
+    u=User.find(session[:user_id])
+    @userEvents = u.events
+  end
+
+  def user_events
+    u=User.find(session[:user_id])
+    @userEvents = u.events
   end
 
   def new
@@ -12,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
+        session[:user_id]=@user.id
         format.html { redirect_to user_url(@user), notice: "#{@user.username} was successfully signup in." }
         format.json { render :show, status: :created, location: @user }
       else

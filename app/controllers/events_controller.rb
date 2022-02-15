@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
   def index
-    @events = Event.all
+    @events = Event.order(event_date: :desc)
   end
 
   def show
@@ -42,7 +42,11 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path
+    if logged_in?
+      redirect_to user_path
+    else
+      redirect_to events_path
+    end
   end
 
   private

@@ -20,7 +20,11 @@
 
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> <br/><br/>
-  <%= link_to "Back to events", events_path %><br/><br/>
+  <% if logged_in? %>
+    <%= link_to "Back to events", user_path  %>
+  <% else %>
+    <%= link_to "Back to events", events_path  %>
+  <% end %>
 
   <%= button_to "Destroy this event", @event, method: :delete %>
 </div>
