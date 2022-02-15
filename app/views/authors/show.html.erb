@@ -1,0 +1,32 @@
+<head>
+  <style>
+    body{
+      text-align:center;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding:10px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <h1>Author </h1>
+    <table>
+      <tr>
+        <td>Author first_name</td><td>Author last_name</td>
+        <td>Author dob</td><td>Author email</td><td>Edit</td><td>Delete</td>
+      </tr>
+      <tr>
+        <td><%=@author.first_name%></td>
+        <td><%=@author.last_name %></td>
+        <td><%=@author.dob%></td>
+        <td><%=@author.email %></td>   
+        <td><%= button_to 'Edit', edit_author_path(@author), method: 'get'%></td>
+        <td><%= button_to 'Remove', author_path(@author), method: 'delete' %></td>  
+      </tr>
+    </table>
+  </center>
+</body>
