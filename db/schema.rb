@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_121659) do
+ActiveRecord::Schema.define(version: 2022_02_16_100055) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 2022_02_14_121659) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "user_address"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -73,6 +81,21 @@ ActiveRecord::Schema.define(version: 2022_02_14_121659) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "fname"
     t.string "lname"
@@ -101,6 +124,14 @@ ActiveRecord::Schema.define(version: 2022_02_14_121659) do
     t.datetime "created_at", precision: 6, null: false
     t.integer "updated_at", null: false
     t.integer "user_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_events_on_category_id"
+  end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.index ["user_id", "event_id"], name: "index_events_users_on_user_id_and_event_id"
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -163,8 +194,9 @@ ActiveRecord::Schema.define(version: 2022_02_14_121659) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "users"
   add_foreign_key "books", "authors"
+  add_foreign_key "events", "categories"
 end

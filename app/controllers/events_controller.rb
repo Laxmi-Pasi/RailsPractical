@@ -1,9 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+
+  # before_action :add_user_id_into_events_table, only: %i[create]
+
+  # def add_user_id_into_events_table
+  #   self.user_id=current_user
+  # end
+
   def index
     @events = Event.order(event_date: :desc)
+    @events=Event.where('category_id=?',params[:search]) if params[:search]
+    puts session[:user_id]
   end
-
   def show
   end
 
@@ -16,7 +24,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.user = current_user
+    #@event.user = current_user  //this works when we have 1 to many relation between user and events
     respond_to do |format|
       if @event.save
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
@@ -55,7 +63,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:name, :description,  :event_date)
+      params.require(:event).permit(:name, :description,  :event_date, :category_id)
     end
 
 end

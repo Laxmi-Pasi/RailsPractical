@@ -8,21 +8,17 @@
 <p>Email:<%= @user.email %></p>
 <p><%= link_to 'click here to see your events',user_events_path%></p>
 <table class="table table-striped">
-    <tr><center>Events Details </center></tr>
+    <tr><center>Your enrolled Events Details </center></tr>
     <tr class="table table-dark">
-    <td>Id</td><td>Name</td><td>Description</td><td>Event Date</td><td>User_id</td><td>Show</td><td>Edit</td><td>Delete</td>
+    <td>Event Id</td><td>Name</td><td>Description</td><td>Event Date</td>
     </tr>
-    <% @userEvents.each do |s| %>
+    <% @user.events.each do |s| %>
       <tr>
         <td><%=s.id %></td>
         <td><%=s.name %></td>
         <td><%=s.description %></td>
         <td><%=s.event_date %></td>
-        <td><%=s.user_id %></td>
-        <td><%= button_to 'Show', event_path(s), method: 'get',class:"btn btn-info"%></td>
-        <td><%= button_to 'Edit', edit_event_path(s), method: 'get',class:"btn btn-dark"%></td>
-        <td><%= button_to 'Remove', event_path(s), method: 'delete',class:"btn btn-danger"%></td>  
       </tr>
     <% end %>
   </table>
-  <%= link_to "Add a New Event", new_event_path %> <br/>
+  

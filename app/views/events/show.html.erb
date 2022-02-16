@@ -16,12 +16,22 @@
     <strong>Event Date:</strong>
     <%= @event.event_date %>
   </p>
+  <p>
+    <strong>user id </strong>
+    <%= @event.user_id %>
+  </p>
+  <p>
+    <strong>Comments:</strong><br/>
+    <% @event.comments.each do |comment| %>
+      <%=comment.content %><br/>
+    <% end %>
+  </p>
 </div>
 
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> <br/><br/>
   <% if logged_in? %>
-    <%= link_to "Back to events", user_path  %>
+    <%= link_to "Back to events", user_path(session[:user_id])  %>
   <% else %>
     <%= link_to "Back to events", events_path  %>
   <% end %>

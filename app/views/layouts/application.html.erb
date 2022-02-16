@@ -21,18 +21,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      <% if logged_in? %>
         <li class="nav-item active">
-        <% if logged_in? %>
-          <%=button_to 'Home', user_events_path, class:"btn btn-dark"%>
-        <% else %>
-          <%=button_to 'Home', events_path, class:"btn btn-dark"%>
-        <% end %>
+          <%=button_to 'Home', user_path(session[:user_id]), class:"btn btn-dark",method: 'get'%>
         </li>
         <li class="nav-item active">
-        <% if logged_in? %>
+          <%=button_to 'Enroll', events_path, class:"btn btn-dark",method: 'get'%>
+        </li>
+        <li class="nav-item active">
           <%=button_to 'Log Out', login_path(session[:user_id]), method: 'delete',class:"btn btn-dark"%>
-        <% end %>
         </li>
+      <% else %>
+          <%=button_to 'Home', users_path, class:"btn btn-dark", method: 'get'%>
+      <% end %>
       </ul>
       </div>
     </nav>

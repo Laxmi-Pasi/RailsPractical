@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'categories/new'
+  get 'categories/show'
+  get 'categories/edit'
+  get 'categories/index'
   resources :users, except: [:new]
   resources :events
   resources :customers
