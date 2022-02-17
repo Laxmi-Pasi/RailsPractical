@@ -1,11 +1,8 @@
 class UsersController < ApplicationController
   def show
-    #@user = User.find(params[:id])
     @user=User.find(session[:user_id])
     if session[:user_id] && params[:event_id]
-      if EventsUser.create(user_id:session[:user_id],event_id:params[:event_id])
-        puts "--------------enrolled-------------"
-      end 
+      EventsUser.create(user_id:session[:user_id],event_id:params[:event_id])  
     end
   end
 
@@ -48,5 +45,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end
-  
 end

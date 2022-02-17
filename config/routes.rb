@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get 'categories/new'
-  get 'categories/show'
-  get 'categories/edit'
-  get 'categories/index'
+  resources :categories
   resources :users, except: [:new]
   resources :events, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :add_comments
+      get :unenroll
     end
   end
   resources :customers

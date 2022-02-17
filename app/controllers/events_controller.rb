@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   def index
     @events = Event.order(event_date: :desc)
     @events=Event.where('category_id=?',params[:search]) if params[:search]
-    puts session[:user_id]
   end
   def show
   end
@@ -57,6 +56,10 @@ class EventsController < ApplicationController
     redirect_to event_path(id:params[:event_id])
   end
 
+  def unenroll
+    EventsUser.delete_by("user_id=? and event_id=?",current_user.id,params[:event_id])
+    redirect_to user_path(id:session[:user_id])
+  end
   private
     def set_event
       @event = Event.find(params[:id])
