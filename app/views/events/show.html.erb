@@ -20,6 +20,13 @@
     <strong>user id </strong>
     <%= @event.user_id %>
   </p>
+  <div><strong>Add comments: </strong>
+  <%= form_with(url: add_comments_events_path, method: "get") do |form| %>
+    <%= form.text_field :content %>
+    <%= form.hidden_field :event_id, value: @event.id %>
+    <%= form.submit("add comment") %>
+  <% end %>
+  </div>
   <p>
     <strong>Comments:</strong><br/>
     <% @event.comments.each do |comment| %>
@@ -29,7 +36,6 @@
 </div>
 
 <div>
-  <%= link_to "Edit this event", edit_event_path(@event) %> <br/><br/>
   <% if logged_in? %>
     <%= link_to "Back to events", user_path(session[:user_id])  %>
   <% else %>

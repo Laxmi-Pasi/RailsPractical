@@ -2,14 +2,15 @@
   <table class="table table-striped">
     <tr><center>Events Details </center></tr>
     <tr class="table table-dark">
-    <td>Id</td><td>Name</td><td>Description</td><td>Event Date</td><td>Show</td><td>Edit</td><td>Delete</td>
+    <td>Id</td><td>Name</td><td>Description</td><td>Event Date</td><td>user id</td><td>Show</td><td>Edit</td><td>Delete</td>
     </tr>
-    <% User.find(session[:user_id]).events.each do |s| %>
+    <% Event.where('user_id=?',session[:user_id]).each do |s| %>
       <tr>
         <td><%=s.id %></td>
         <td><%=s.name %></td>
         <td><%=s.description %></td>
         <td><%=s.event_date %></td>
+        <td><%=s.user_id %></td>
         <td><%= button_to 'Show', event_path(s), method: 'get',class:"btn btn-info"%></td>
         <td><%= button_to 'Edit', edit_event_path(s), method: 'get',class:"btn btn-dark"%></td>
         <td><%= button_to 'Remove', event_path(s), method: 'delete',class:"btn btn-danger"%></td>  

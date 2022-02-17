@@ -1,12 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
-  # before_action :add_user_id_into_events_table, only: %i[create]
-
-  # def add_user_id_into_events_table
-  #   self.user_id=current_user
-  # end
-
   def index
     @events = Event.order(event_date: :desc)
     @events=Event.where('category_id=?',params[:search]) if params[:search]
@@ -49,12 +43,18 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    EventsUser.delete_by('event_id=?',@event.id)
     @event.destroy
     if logged_in?
-      redirect_to user_path
+      redirect_to user_events_path
     else
       redirect_to events_path
     end
+  end
+
+  def add_comments
+    Event.find(params[:event_id]).comments.create("content"=>params[:content])
+    redirect_to event_path(id:params[:event_id])
   end
 
   private
@@ -63,7 +63,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:name, :description,  :event_date, :category_id)
+      params.require(:event).permit(:name, :description,  :event_date, :category_id, :user_id)
     end
-
 end

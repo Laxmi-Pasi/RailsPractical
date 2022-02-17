@@ -19,11 +19,11 @@
   <table class="table table-striped">
     <tr><center>Events Details </center></tr>
     <tr class="table table-dark">
-    <td>Id</td><td>Name</td><td>Description</td><td>Event Date</td><td>User_id</td>
+    <td>Id</td><td>Name</td><td>Description</td><td>Event Date</td><td>User_id</td><td>Show</td>  
     <% if logged_in? %>
       <td>Enroll</td>
     <% else %>
-    <td>Show</td><td>Edit</td><td>Delete</td> 
+    <td>Edit</td><td>Delete</td> 
     <% end %>
     </tr>
     <% @events.each do |s| %>
@@ -33,12 +33,12 @@
         <td><%=s.description %></td>
         <td><%=s.event_date %></td>
         <td><%=s.user_id %></td>
+        <td><%= button_to 'Show', event_path(s), method: 'get',class:"btn btn-info"%></td>
         <% if logged_in? %>
           <td><%= button_to 'Enroll',user_path(id:session[:user_id]),params: {event_id: s.id},method: 'get',class:"btn btn-dark"%></td>
         <% else %>
-          <td><%= button_to 'Show', event_path(s), method: 'get',class:"btn btn-info"%></td>
           <td><%= button_to 'Edit', edit_event_path(s), method: 'get',class:"btn btn-dark"%></td>
-          <td><%= button_to 'Remove', event_path(s), method: 'delete',class:"btn btn-danger"%></td>  
+          <td><%= button_to 'Remove', event_path(s),params: {event_id: s.id}, method: 'delete',class:"btn btn-danger"%></td>  
         <% end %>
       </tr>
     <% end %>

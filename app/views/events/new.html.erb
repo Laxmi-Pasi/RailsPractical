@@ -3,7 +3,7 @@
 <br>
 <div>
 <% if logged_in? %>
-  <%= link_to "Back to events", user_path(session[:user_id])  %>
+  <%= link_to "Back to events", user_events_path  %>
 <% else %>
   <%= link_to "Back to events", events_path  %>
 <% end %>
