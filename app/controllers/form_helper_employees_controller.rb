@@ -51,5 +51,9 @@ class FormHelperEmployeesController < ApplicationController
   end
 
   def search
+    if params[:query]
+      redirect_to search_path if FormHelperEmployee.find(params[:query]).blank?
+      redirect_to form_helper_employee_path(params[:query])
+    end
   end
 end

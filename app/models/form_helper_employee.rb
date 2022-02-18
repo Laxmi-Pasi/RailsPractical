@@ -5,4 +5,5 @@ class FormHelperEmployee < ApplicationRecord
   validates :birth_date,  comparison: { less_than_or_equal_to: Date.today, message: "birthdate can't be in future"}
   has_many :emp_addresses, dependent: :destroy
   accepts_nested_attributes_for :emp_addresses, allow_destroy: true
+  has_one_attached :document
 end

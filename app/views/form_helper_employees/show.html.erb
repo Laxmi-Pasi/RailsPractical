@@ -39,7 +39,9 @@
   </p>
   <p>
     <strong>Document:</strong><br/>
-    <%= @employee.document %>
+    <% if @employee.document.attached? %>
+      <%= image_tag @employee.document, style: "width: 200px; display: block:" %>
+    <% end %>
   </p>
 </div>
 <%= link_to "Add a New Employee", new_form_helper_employee_path %>
