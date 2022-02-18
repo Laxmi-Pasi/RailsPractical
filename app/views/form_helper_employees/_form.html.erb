@@ -1,0 +1,71 @@
+<%= form_with(model: @employee) do |form| %>
+  <div style="height:50%;width:50%;margin-left:25%;"> 
+    <div>
+      <%= form.label :employee_name,"Employee Name", style: "display: block"%>
+      <%= form.text_field :employee_name, class:"form-control" %>
+    </div>
+  
+    <div>   
+      <%= form.label :email, style: "display: block" %>
+      <%= form.email_field :email,class:"form-control" %>
+    </div>
+    
+    <div>
+      <%= form.label :password,"Password", style: "display: block" %>
+      <%= form.password_field :password ,class:"form-control"%>
+    </div>
+    <div>Gender: 
+      <%= form.radio_button :gender, "Male" %>
+      <%= form.label :gender_male, "Male" %>
+      <%= form.radio_button :gender, "Female" %>
+      <%= form.label :gender_female, "Female" %>  
+    </div>
+    <div>Hobbies:
+      <%= form.check_box :hobbies, {multiple: true}, "reading",false %>
+      <%= form.label "reading" %>
+      <%= form.check_box :hobbies, {multiple: true}, "playing",false %>
+      <%= form.label "playing" %>
+      <%= form.check_box :hobbies, {multiple: true}, "studying",false %>
+      <%= form.label "studying" %>
+      <%= form.check_box :hobbies, {multiple: true}, "watching",false %>
+      <%= form.label "watching" %>
+    </div>
+    <div>
+      <%= form.label :address, style: "display: block" %>
+      <%= form.text_area :address ,class:"form-control"%>
+      <% i=1 %>
+      <%= form.fields_for :emp_addresses do |addresses_form| %>
+        Address  <%=i%><% i+=1 %>:<br/>
+        <%= addresses_form.label :house_name, "House Name" %>
+        <%= addresses_form.text_field :house_name, class:"form-control" %>
+        <%= addresses_form.label :street_name, "Street Name" %>
+        <%= addresses_form.text_field :street_name, class:"form-control" %>
+        <%= addresses_form.label :road, "Road" %>
+        <%= addresses_form.text_field :road, class:"form-control" %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :mobile_number,"Mobile Number", style: "display: block" %>
+      <%= form.number_field :mobile_number ,class:"form-control"%>
+    </div>
+    <div>
+      <%= form.label :birth_date,"Date of Birth", style: "display: block" %>
+      <%= form.date_field :birth_date ,class:"form-control"%>
+    </div>
+    <div>
+      <%= form.label :document, style: "display: block" %>
+      <%= form.file_field :document ,class:"form-control"%>
+    </div>
+  <div>
+    <%=form.submit%>
+  </div>
+</div>
+<% end %>
+<% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li style="color:red;"><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>

@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+  resources :form_helper_employees
   resources :customers
+  resources :products
+  resources :employees
+  resources :authors
+  resources :images
+  resources :books
+  resources :products
+  resources :students
+  resources :faculties
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :display_all_products
@@ -16,14 +25,7 @@ Rails.application.routes.draw do
     end
   end
   get 'employees/viewEmployeeSummary'
-  resources :products
-  resources :employees
-  resources :authors
-  resources :images
-  resources :books
-  resources :products
-  resources :students
-  resources :faculties
   root "articles#index"
   get "/articles", to: "articles#index"
+  get "/search", to: "form_helper_employees#search"
 end
