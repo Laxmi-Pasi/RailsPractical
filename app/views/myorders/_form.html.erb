@@ -1,0 +1,43 @@
+<!------ products details -->
+<div>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>price:</strong>
+  <%= @product.price %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description%>
+</p>
+</div>
+<%= form_with(model: [@product, @order], local: true) do |form| %>
+  <% if @order.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div style="margin:10px;">
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div style="margin:10px;">
+    <%= form.label :total_price, style: "display: block" %>
+    <%= form.number_field :total_price %>
+  </div>
+
+  <div style="margin:10px;">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to "Back to Orders", myproduct_myorders_path(@product) %>

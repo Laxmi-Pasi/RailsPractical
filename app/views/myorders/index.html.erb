@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <tr><center>Orders Details </center></tr>
+  <tr class="table table-dark">
+  <td>Id</td><td>Name</td><td>Price</td><td>Quantity</td><td>Total Price</td><td>Show</td><td>Edit</td><td>Delete</td>
+  </tr>
+  <% @orders.each do |s| %>
+    <tr>
+      <td><%=s.id %></td>
+      <td><%=s.myproduct.name %></td>
+      <td><%=s.myproduct.price %></td>
+      <td><%=s.quantity %></td>
+      <td><%=s.total_price %></td>
+      <td><%= button_to 'Show', myproduct_myorder_path(@product,s), method: 'get',class:"btn btn-info"%></td>
+      <td><%= button_to 'Edit', edit_myproduct_myorder_path(@product,s), method: 'get',class:"btn btn-dark"%></td>
+      <td><%= button_to 'Remove', myproduct_myorder_path(@product,s), method: 'delete',class:"btn btn-danger"%></td>  
+    </tr>
+  <% end %>
+</table>
+<%= link_to "Add a New Order", new_myproduct_myorder_path(@product) %> <br/>
+<%= link_to "Back to Products", myproducts_path %> <br/>
