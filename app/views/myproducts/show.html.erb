@@ -1,3 +1,8 @@
+<% if flash[:notice] %> 
+  <% flash.each do |name,msg| %>
+    <h3 style="color:green;"><%= msg %></h3>
+  <% end %>
+<% end %>
 <div>
   <p>
     <strong>Name:</strong>
@@ -39,8 +44,5 @@
   <%= link_to 'Add order details',myproduct_myorders_path(@product) %>|
   <%= link_to "Edit this product", edit_myproduct_path(@product) %> |
   <%= link_to "Back to products", myproducts_path %>
-  <%= #link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } 
-  %>
   <%= button_to "Destroy this product", @product, method: :delete %>
 </div>
-

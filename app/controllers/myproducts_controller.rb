@@ -16,28 +16,23 @@ class MyproductsController < ApplicationController
   end
 
   def create
-    @product = Myproduct.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to myproduct_url(@product), notice: "Product was successfully created." }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    @product = Myproduct.create(product_params)
+    if @product.valid?
+      flash[:notice] = "Product is successfully added."
+      redirect_to myproduct_path(@product)
+    else
+      flash[:errors] = @product.errors.full_messages
+      redirect_to new_myproduct_path
     end
   end
 
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to myproduct_url(@product), notice: "Product was successfully updated." }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.update(product_params)
+      flash[:notice] = "Product is successfully updated."
+      redirect_to myproduct_path(@product)
+    else
+      flash[:errors] = @product.errors.full_messages
+      redirect_to edit_myproduct_path(@product)
     end
   end
 

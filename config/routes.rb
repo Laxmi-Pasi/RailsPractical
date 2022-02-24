@@ -27,16 +27,17 @@ Rails.application.routes.draw do
   resources :faculties
   root "myproducts#index"
   # get "/articles", to: "articles#index"
-  resources :mycustomers, only: [:index, :edit, :create] do
-    get 'search', on: :collection
-    get 'preview', on: :new
-    get 'delete_customer', on: :collection
-  end
-
-  namespace :business do
-    resources :mycustomers
-  end
   resources :myproducts do
     resources :myorders
+  end
+  
+  namespace :business do
+    resources :mycustomers, only: [:index, :edit, :create] do
+      get 'search', on: :collection
+      get 'preview', on: :member
+      delete 'delete_customer', on: :member
+      get 'new', on: :collection, as: 'new'
+      patch 'update', on: :member
+    end
   end
 end

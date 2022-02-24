@@ -17,38 +17,29 @@ class MyordersController < ApplicationController
   end
 
   def create
-    @order = @product.myorders.build(order_params)
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to myproduct_myorders_path(@product), notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    @order = @product.myorders.create(order_params)
+    if @order.valid?
+      flash[:notice] = "Order is successfully added."
+      redirect_to myproduct_myorder_path(@product,@order)
+    else
+      flash[:errors] = @order.errors.full_messages
+      redirect_to new_myproduct_myorder_path(@product)
     end
   end
 
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to myproduct_myorder_path(@order), notice: "Order was successfully updated." }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    if @order.update(order_params)
+      flash[:notice] = "Order is successfully updated."
+      redirect_to myproduct_myorder_path(@product)
+    else
+      flash[:errors] = @order.errors.full_messages
+      redirect_to edit_myproduct_myorder_path(@product)
     end
   end
 
   def destroy
     @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to myproduct_myorders_path, notice: "Order was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to myproduct_myorders_path
   end
 
   private

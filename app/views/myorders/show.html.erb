@@ -1,3 +1,8 @@
+<% if flash[:notice] %> 
+  <% flash.each do |name,msg| %>
+    <h3 style="color:green;"><%= msg %></h3>
+  <% end %>
+<% end %>
 <div>
 <p>
   <strong>Name:</strong>
