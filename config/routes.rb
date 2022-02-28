@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :users, except: [:new]
+  resources :events, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
+    collection do
+      get :add_comments
+      get :unenroll
+    end
+  end
   resources :customers
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
@@ -26,4 +34,9 @@ Rails.application.routes.draw do
   resources :faculties
   root "articles#index"
   get "/articles", to: "articles#index"
+  get 'signup', to: 'users#new'
+  get "login", to: 'sessions#new'
+  get "user_events",to: 'users#user_events'
+  post 'login', to: 'sessions#create'
+  delete 'login', to: 'sessions#destroy'
 end
