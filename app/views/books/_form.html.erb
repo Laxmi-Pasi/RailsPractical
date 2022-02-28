@@ -1,6 +1,6 @@
 <%= form_with model: @book do |form| %>
   <%=form.hidden_field :lock_version %>
-  <%= form.text_field :name, placeholder: 'name' %>
+  <%= form.text_field :name, placeholder: 'name', class:"form-control" %>
   <%= form.number_field :price, placeholder: 'price' %>
   <%= form.number_field :author_id, placeholder: 'author id' %>
   <%= form.submit %>
