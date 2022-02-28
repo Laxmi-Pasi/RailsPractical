@@ -12,6 +12,14 @@ Rails.application.routes.draw do
     end
   end
   resources :customers
+  resources :products
+  resources :employees
+  resources :authors
+  resources :images
+  resources :books
+  resources :products
+  resources :students
+  resources :faculties
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :display_all_products
@@ -37,7 +45,24 @@ Rails.application.routes.draw do
   resources :students
   resources :faculties
   #root "articles#index"
+  root "myproducts#index"
+  # get "/articles", to: "articles#index"
+  resources :myproducts do
+    resources :myorders
+  end
+  
+  namespace :business do
+    resources :mycustomers, only: [:index, :edit, :create] do
+      get 'search', on: :collection
+      get 'preview', on: :member
+      delete 'delete_customer', on: :member
+      get 'new', on: :collection, as: 'new'
+      patch 'update', on: :member
+    end
+  end
+  root "articles#index"
   get "/articles", to: "articles#index"
+  get "/search", to: "form_helper_employees#search"
   get 'signup', to: 'users#new'
   get "login", to: 'sessions#new'
   get "user_events",to: 'users#user_events'

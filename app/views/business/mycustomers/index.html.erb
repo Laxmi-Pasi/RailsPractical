@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <tr><center>Customes Details </center></tr>
+  <tr class="table table-dark">
+  <td>Id</td><td>Name</td><td>Email</td><td>Phone number</td><td>Show</td><td>Edit</td><td>Delete</td>
+  </tr>
+  <% @customers.each do |s| %>
+    <tr>
+      <td><%=s.id %></td>
+      <td><%=s.name %></td>
+      <td><%=s.email %></td>
+      <td><%=s.phone_number %></td>
+      <td><%= button_to 'Preview', preview_business_mycustomer_path(s), method: 'get',class:"btn btn-dark"%></td>
+      <td><%= button_to 'Edit', edit_business_mycustomer_path(s), method: 'get',class:"btn btn-dark"%></td>
+      <td class=""><%= button_to 'Remove', delete_customer_business_mycustomer_path(s), method: 'delete',class:"btn btn-danger"%></td>  
+   </tr>
+  <% end %>
+</table>
+<%= form_with url: "/business/mycustomers/search", method: :get do |form| %>
+  <%= form.text_field :search,placeholder:" Search customer by customer id" %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<%= link_to "Add a New Customer",new_business_mycustomers_path %> <br/>
