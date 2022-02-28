@@ -1,0 +1,38 @@
+<body>
+  <%= form_tag(events_path, method: :get) do %>
+    <%= select_tag(:search, options_for_select(Category.all.map { |t| [t.category_name, t.id]})) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+  <table class="table table-striped">
+    <tr><center>Events Details </center></tr>
+    <tr class="table table-dark">
+    <td>Event Id</td><td>Name</td><td>Description</td><td>Event Date</td><td>User_id</td><td>Show</td>  
+    <% if logged_in? %>
+      <td>Enroll</td>
+    <% else %>
+    <td>Edit</td><td>Delete</td> 
+    <% end %>
+    </tr>
+    <% @events.each do |s| %>
+      <tr>
+        <td><%=s.id %></td>
+        <td><%=s.name %></td>
+        <td><%=s.description %></td>
+        <td><%=s.event_date %></td>
+        <td><%=s.user_id %></td>
+        <td><%= button_to 'Show', event_path(s), method: 'get',class:"btn btn-info"%></td>
+        <% if logged_in? %>
+          <% if EventsUser.where("user_id=? and event_id=?",current_user.id,s.id).blank? %>
+            <td><%= button_to 'Enroll',user_path(id:session[:user_id]),params: {event_id: s.id},method: 'get',class:"btn btn-success"%></td>
+          <% else %>
+            <td><%= button_to 'Unroll',unenroll_events_path,params: {event_id: s.id},method: 'get',class:"btn btn-danger"%></td>
+          <% end %>
+        <% else %> 
+          <td><%= button_to 'Edit', edit_event_path(s), method: 'get',class:"btn btn-dark"%></td>
+          <td><%= button_to 'Remove', event_path(s),params: {event_id: s.id}, method: 'delete',class:"btn btn-danger"%></td>  
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Add a New Event", new_event_path %> <br/>
+</body>
