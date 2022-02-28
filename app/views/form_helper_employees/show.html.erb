@@ -1,0 +1,49 @@
+<% if flash[:notice] %> 
+  <% flash.each do |name,msg| %>
+    <h3 style="color:green;"><%= msg %></h3>
+  <% end %>
+<% end %>
+<h2>Employee Details </h2>
+<div>
+  <p>
+    <strong>Employee Id:</strong>
+    <%= @employee.id %>
+  </p>
+  <p>
+    <strong>Employee Name:</strong>
+    <%= @employee.employee_name %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @employee.email%>
+  </p>
+  <p>
+    <strong>Gender:</strong>
+    <%= @employee.gender %>
+  </p>
+  <p>
+    <strong>Hobbies </strong>
+    <%= @employee.hobbies %>
+  </p>
+  <p>
+    <strong>Address:</strong><br/>
+    <%= @employee.address %>
+  </p>
+  <p>
+    <strong>Mobile Number:</strong><br/>
+    <%= @employee.mobile_number %>
+  </p>
+  <p>
+    <strong>Date of Birth:</strong><br/>
+    <%= @employee.birth_date %>
+  </p>
+  <p>
+    <strong>Document:</strong><br/>
+    <% if @employee.document.attached? %>
+      <%= image_tag @employee.document, style: "width: 200px; display: block:" %>
+    <% end %>
+  </p>
+</div>
+<%= link_to "Add a New Employee", new_form_helper_employee_path %>
+<%= link_to 'Edit', edit_form_helper_employee_path(@employee), method: 'get'%>
+<%= link_to 'Home', form_helper_employees_path, method: 'get' %>

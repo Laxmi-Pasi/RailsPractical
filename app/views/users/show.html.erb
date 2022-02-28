@@ -1,0 +1,24 @@
+<p style="color:green;">
+<% if flash[:notice] %>
+  <%=flash[:notice] %>
+<% end %>
+</p>
+<h4>Users Profile </h4>
+<p>Username:<%= @user.username %></p>
+<p>Email:<%= @user.email %></p>
+<p><%= link_to 'click here to see your events',user_events_path%></p>
+<table class="table table-striped">
+    <tr><center>Your enrolled Events Details </center></tr>
+    <tr class="table table-dark">
+    <td>Event Id</td><td>Name</td><td>Description</td><td>Event Date</td>
+    </tr>
+    <% @user.events.each do |s| %>
+      <tr>
+        <td><%=s.id %></td>
+        <td><%=s.name %></td>
+        <td><%=s.description %></td>
+        <td><%=s.event_date %></td>
+      </tr>
+    <% end %>
+  </table>
+  
