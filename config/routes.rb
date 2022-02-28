@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'myuser#login'
+  get 'home', to:'myuser#home'
+  devise_for :myusers
   resources :categories
   resources :users, except: [:new]
   resources :events, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
@@ -32,11 +35,12 @@ Rails.application.routes.draw do
   resources :products
   resources :students
   resources :faculties
-  root "articles#index"
+  #root "articles#index"
   get "/articles", to: "articles#index"
   get 'signup', to: 'users#new'
   get "login", to: 'sessions#new'
   get "user_events",to: 'users#user_events'
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
+  resource :myusers
 end
