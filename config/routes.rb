@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :form_helper_employees
   resources :categories
   resources :users, except: [:new]
@@ -33,6 +34,29 @@ Rails.application.routes.draw do
     end
   end
   get 'employees/viewEmployeeSummary'
+  resources :products
+  resources :employees
+  resources :authors
+  resources :images
+  resources :books
+  resources :products
+  resources :students
+  resources :faculties
+  root "myproducts#index"
+  # get "/articles", to: "articles#index"
+  resources :myproducts do
+    resources :myorders
+  end
+  
+  namespace :business do
+    resources :mycustomers, only: [:index, :edit, :create] do
+      get 'search', on: :collection
+      get 'preview', on: :member
+      delete 'delete_customer', on: :member
+      get 'new', on: :collection, as: 'new'
+      patch 'update', on: :member
+    end
+  end
   root "articles#index"
   get "/articles", to: "articles#index"
   get "/search", to: "form_helper_employees#search"

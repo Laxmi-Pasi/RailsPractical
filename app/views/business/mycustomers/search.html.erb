@@ -1,0 +1,21 @@
+
+<div>
+  <p>
+    <strong>Name:</strong>
+    <%= @customer.name %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @customer.email%>
+  </p>
+  <p>
+    <strong>Phone Number:</strong>
+    <%= @customer.phone_number %>
+  </p>
+</div>
+<div>
+  <%= link_to "Edit this customer", edit_business_mycustomer_path(@customer) %><br/> <br/>
+  <%= link_to "Back to customers", business_mycustomers_path %><br/><br/>
+
+  <%= button_to "Destroy this Customer", delete_customer_business_mycustomer_path(@customer),method: 'delete'%>
+</div>

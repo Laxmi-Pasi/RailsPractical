@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <tr><center>Products Details </center></tr>
+  <tr class="table table-dark">
+  <td>Id</td><td>Name</td><td>Price</td><td>Show</td><td>Edit</td><td>Delete</td>
+  </tr>
+  <% @products.each do |s| %>
+    <tr>
+      <td><%=s.id %></td>
+      <td><%=s.name %></td>
+      <td><%=s.price %></td>
+      <td><%= button_to 'Show', myproduct_path(s), method: 'get',class:"btn btn-info"%></td>
+      <td><%= button_to 'Edit', edit_myproduct_path(s), method: 'get',class:"btn btn-dark"%></td>
+      <td><%= button_to 'Remove', myproduct_path(s), method: 'delete',class:"btn btn-danger"%></td>  
+    </tr>
+  <% end %>
+</table>
+<%= link_to "Add a New Product", new_myproduct_path %> <br/>

@@ -1,0 +1,41 @@
+<% if flash[:errors] %>
+  <div>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li style="color:red;"><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<!------ products details -->
+<div>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>price:</strong>
+  <%= @product.price %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description%>
+</p>
+</div>
+<%= form_with(model: [@product, @order], local: true) do |form| %>
+  <div style="margin:10px;">
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div style="margin:10px;">
+    <%= form.label :total_price, style: "display: block" %>
+    <%= form.number_field :total_price %>
+  </div>
+
+  <div style="margin:10px;">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to "Back to Orders", myproduct_myorders_path(@product) %>
