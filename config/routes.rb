@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'myuser#login'
+  #root 'pages#home'
+  root 'myuser#home'
   get 'home', to:'myuser#home'
   devise_for :myusers
   resources :categories

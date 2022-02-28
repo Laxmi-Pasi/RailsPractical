@@ -4,7 +4,7 @@ class Myuser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: [:user, :admin]
+  enum role: [:merchant, :admin]
 
   # before_save :set_default_role
 
