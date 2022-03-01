@@ -1,7 +1,10 @@
 <table class="table table-striped">
   <tr><center>Orders Details </center></tr>
   <tr class="table table-dark">
-  <td>Id</td><td>Name</td><td>Price</td><td>Quantity</td><td>Total Price</td><td>Show</td><td>Edit</td><td>Delete</td>
+  <td>Id</td><td>Name</td><td>Price</td><td>Quantity</td><td>Total Price</td><td>Show</td>
+  <% if current_myuser.role=='admin' %>
+    <td>Edit</td><td>Delete</td>
+  <% end %>
   </tr>
   <% @orders.each do |s| %>
     <tr>
@@ -11,10 +14,14 @@
       <td><%=s.quantity %></td>
       <td><%=s.total_price %></td>
       <td><%= button_to 'Show', myproduct_myorder_path(@product,s), method: 'get',class:"btn btn-info"%></td>
-      <td><%= button_to 'Edit', edit_myproduct_myorder_path(@product,s), method: 'get',class:"btn btn-dark"%></td>
-      <td><%= button_to 'Remove', myproduct_myorder_path(@product,s), method: 'delete',class:"btn btn-danger"%></td>  
+      <% if current_myuser.role=='admin' %>
+        <td><%= button_to 'Edit', edit_myproduct_myorder_path(@product,s), method: 'get',class:"btn btn-dark"%></td>
+        <td><%= button_to 'Remove', myproduct_myorder_path(@product,s), method: 'delete',class:"btn btn-danger"%></td>  
+      <% end %>
     </tr>
   <% end %>
 </table>
-<%= link_to "Add a New Order", new_myproduct_myorder_path(@product) %> <br/>
+<% if current_myuser.role=='admin' %>
+  <%= link_to "Add a New Order", new_myproduct_myorder_path(@product) %> <br/>
+<% end %>
 <%= link_to "Back to Products", myproducts_path %> <br/>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin</title>
+    <title>Merchant</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,15 +14,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm bg-light ">
+    <nav class="navbar navbar-expand-sm bg-light justify-content-center">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-        <li class="nav-item active">
-          <%=button_to 'Home', root_path, class:"btn btn-dark", method: 'get'%>
-        </li>
+          <li class="nav-item active">
+            <%=button_to 'Home', root_path, class:"btn btn-dark", method: 'get'%>
+          </li>
         <% if current_myuser %>
           <li class="nav-item active">
-            <%=button_to 'Log Out', destroy_myuser_session_path,method: :delete, class:"btn btn-dark float-right"%>
+            <%=button_to 'Log Out', destroy_myuser_session_path,method: :delete, class:"btn btn-dark"%>
+          </li>
+          <li class="nav-item active">
+            <center>
+            <%=current_myuser.email %>
+            </center>
           </li>
         <% end %>
         </ul>

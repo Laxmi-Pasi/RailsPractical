@@ -1,12 +1,18 @@
-
-<% if current_myuser %>
-    <p><%= current_myuser.email %>! </p>
-    <p><%= current_myuser.role %></p>
-    <%= button_to "sign Out",destroy_myuser_session_path,method: :delete %>    
-<% else %>
+<center>
+<div style="margin-top:10%;">
+  <% if current_myuser %>
+    <div>
+      <p style="color:green;text-align:center;"> Welcome: <%= current_myuser.email %>!<br/>
+      <%= link_to "Click here for Products", myproducts_path %> 
+      </p>
+    </div>
+        
+  <% else %>
     <p> You are not signed in. </p>
     <%= link_to "Sign Up!", new_myuser_registration_path %> <br/>
     <%= link_to "login", new_myuser_session_path %>
-<% end %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+  <% end %>
+  <p style="color:red;" class="notice"><%= notice %></p>
+  <p style="color:red;" class="alert"><%= alert %></p>
+</div>
+</center>

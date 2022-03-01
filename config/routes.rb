@@ -11,15 +11,6 @@ Rails.application.routes.draw do
       get :unenroll
     end
   end
-  resources :customers
-  resources :products
-  resources :employees
-  resources :authors
-  resources :images
-  resources :books
-  resources :products
-  resources :students
-  resources :faculties
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :display_all_products
@@ -45,7 +36,7 @@ Rails.application.routes.draw do
   resources :students
   resources :faculties
   #root "articles#index"
-  root "myproducts#index"
+  #root "myproducts#index"
   # get "/articles", to: "articles#index"
   resources :myproducts do
     resources :myorders
@@ -60,8 +51,7 @@ Rails.application.routes.draw do
       patch 'update', on: :member
     end
   end
-  root "articles#index"
-  get "/articles", to: "articles#index"
+
   get "/search", to: "form_helper_employees#search"
   get 'signup', to: 'users#new'
   get "login", to: 'sessions#new'
