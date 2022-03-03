@@ -2,7 +2,8 @@ class MyordersController < ApplicationController
   before_action :store_product_id, :authenticate_merchant
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   layout :check_for_user
-  
+  before_action :merchant_show, except: [:show, :index]
+
   def index
     @orders = @product.myorders
   end
@@ -63,7 +64,14 @@ class MyordersController < ApplicationController
 
     def authenticate_merchant
       if current_myuser.role != 'merchant'
-        flash[:notice]="before action, Please login or Sign up!"
+        flash[:notice]="only merchant can view orders"
+        redirect_to root_path
+      end
+    end
+
+    def merchant_show
+      if current_myuser.role=='merchant'
+        flash[:notice]="merchant can only view the orders"
         redirect_to root_path
       end
     end
