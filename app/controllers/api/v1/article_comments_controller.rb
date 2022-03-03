@@ -49,6 +49,5 @@ class Api::V1::ArticleCommentsController < ApplicationController
     def set_api_v1_comment
       @comment = ArticleComment.find(params[:id])
     end
-
 end
   
