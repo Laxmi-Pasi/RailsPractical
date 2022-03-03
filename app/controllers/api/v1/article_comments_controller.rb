@@ -35,16 +35,20 @@ class Api::V1::ArticleCommentsController < ApplicationController
     render json: "Successfully deleted"
   end
 
+  def comment_search
+    @comment = ArticleComment.find_by(comment: params[:comment])
+    if @comment
+      render json: @comment
+    else
+      render json: "record doesn't exist."
+    end
+  end
+  
   private
   
     def set_api_v1_comment
       @comment = ArticleComment.find(params[:id])
     end
 
-    def comment_search
-      if params[:query]
-          @comment =ArticleComment.where('comment=?',params[:query])
-      end
-    end
 end
   

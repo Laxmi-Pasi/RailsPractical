@@ -14,9 +14,8 @@ class Api::V1::MyarticlesController < ApplicationController
     @article = Myarticle.new(title: params[:title],body: params[:body],release_date: params[:release_date])
 
     if @article.save
-    #   result = { type: 'Success', data: ActiveModelSerializers::SerializableResource.new(@article, each_serializer: Api::V1::ArticleSerializer), message: ["user created successfully"],
-    # status: 200}
-      render json: "Successfully inserted"
+      result = { type: 'Success', data: ActiveModelSerializers::SerializableResource.new(@article, each_serializer: Api::V1::ArticleSerializer), message: ["user created successfully"],status: 200}
+      render json: result
     else
       render json: @article.errors, status: :unprocessable_entity
     end
@@ -33,6 +32,15 @@ class Api::V1::MyarticlesController < ApplicationController
   def destroy
     @article.destroy
     render json: "Successfully deleted"
+  end
+
+  def title_search
+    @article = Myarticle.find_by(title: params[:title])
+    if @article
+      render json: @article
+    else
+      render json: "record doesn't exist."
+    end
   end
 
   private

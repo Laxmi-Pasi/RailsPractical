@@ -44,8 +44,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :myarticles
       resources :article_comments
-      get "article_search", to: 'myarticles#article_search'
-      get "comment_search", to: 'myarticles#comment_search'
+      get "title_search", to: 'myarticles#article_search'
+      get "comment_search", to: 'article_comments#comment_search'
     end
   end
 end
