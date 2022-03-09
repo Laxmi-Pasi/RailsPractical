@@ -1,6 +1,8 @@
 class MyproductsController < ApplicationController
-  
+  before_action :user_authentication
   before_action :set_product, only: %i[ show edit update destroy ]
+  layout :check_for_user
+
   def index
     @products = Myproduct.all
   end
@@ -49,5 +51,16 @@ class MyproductsController < ApplicationController
   def product_params
     params.require(:myproduct).permit(:name, :price, :description)
   end
-  
+
+  def check_for_user
+    return "admin" if current_myuser and current_myuser.role == 'admin'
+    return "merchant" if current_myuser and current_myuser.role == 'merchant'
+  end
+
+  def user_authentication
+    if !current_myuser
+      flash[:notice]="Before action, Please login or sign up!"
+      redirect_to root_path
+    end
+  end
 end

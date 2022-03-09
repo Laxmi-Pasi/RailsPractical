@@ -4,33 +4,33 @@
   <% end %>
 <% end %>
 <div>
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @product.name %>
+  </p>
 
-<p>
-  <strong>price:</strong>
-  <%= @product.price %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @product.description%>
-</p>
-<p>
-  <strong>Order Id:</strong>
-  <%= @order.id%>
-</p>
-<p>
-  <strong>Quantity Id:</strong>
-  <%= @order.quantity%>
-</p>
-<p>
-  <strong>Total Price:</strong>
-  <%= @order.total_price%>
-</p>
+  <p>
+    <strong>price:</strong>
+    <%= @product.price %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @product.description%>
+  </p>
+  <p>
+    <strong>Order Id:</strong>
+    <%= @order.id%>
+  </p>
+  <p>
+    <strong>Quantity Id:</strong>
+    <%= @order.quantity%>
+  </p>
+  <p>
+    <strong>Total Price:</strong>
+    <%= @order.total_price%>
+  </p>
 </div>
 
 <div>
-<%= link_to "Back to Orders", myproduct_myorders_path(@product) %>
+  <%= link_to "Back to Orders", myproduct_myorders_path(@product) %>
 </div>

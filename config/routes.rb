@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-
-  resources :form_helper_employees
+  root 'myuser#home'
+  get 'home', to:'myuser#home'
+  devise_for :myusers
   resources :categories
   resources :users, except: [:new]
   resources :events, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
@@ -9,15 +10,6 @@ Rails.application.routes.draw do
       get :unenroll
     end
   end
-  resources :customers
-  resources :products
-  resources :employees
-  resources :authors
-  resources :images
-  resources :books
-  resources :products
-  resources :students
-  resources :faculties
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :display_all_products
@@ -42,7 +34,8 @@ Rails.application.routes.draw do
   resources :products
   resources :students
   resources :faculties
-  root "myproducts#index"
+  #root "articles#index"
+  #root "myproducts#index"
   # get "/articles", to: "articles#index"
   resources :myproducts do
     resources :myorders
@@ -57,12 +50,12 @@ Rails.application.routes.draw do
       patch 'update', on: :member
     end
   end
-  root "articles#index"
-  get "/articles", to: "articles#index"
+
   get "/search", to: "form_helper_employees#search"
   get 'signup', to: 'users#new'
   get "login", to: 'sessions#new'
   get "user_events",to: 'users#user_events'
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
+  resource :myusers
 end
