@@ -1,4 +1,4 @@
-class MyuserController < ApplicationController
+class MyusersController < ApplicationController
   include Devise::Controllers::Helpers 
 
   def home
@@ -7,5 +7,8 @@ class MyuserController < ApplicationController
   end
 
   def index
+  end
+
+  def show
   end
 end

@@ -35,4 +35,10 @@ class MyproductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get delete" do
+    #delete "/myproducts/#{@product.id}"
+    @product.destroy
+    assert_nil( @product )
+  end
+
 end
