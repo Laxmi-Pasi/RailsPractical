@@ -49,7 +49,7 @@ class MyproductsController < ApplicationController
   end
 
   def product_params
-    params.require(:myproduct).permit(:name, :price, :description)
+    params.require(:myproduct).permit(:name, :price, :description, :myuser_id)
   end
 
   def check_for_user

@@ -35,5 +35,4 @@ RSpec.describe Myuser, type: :model do
     product = FactoryBot.create(:myproduct)
     expect(product).to be_valid
   end
-
 end

@@ -5,6 +5,7 @@ RSpec.describe User, type: :request do
   before do
     @user = FactoryBot.create(:myuser)
     sign_in @user
+    @product = FactoryBot.create(:myproduct)
   end
   
   it "get index" do
@@ -13,28 +14,34 @@ RSpec.describe User, type: :request do
   end
 
   it "get new " do
-    product = FactoryBot.create(:myproduct)
-    get new_myproduct_path(product)
+    get new_myproduct_path(@product)
     expect(response).to be_successful
   end
   
   it "get show " do
-    product = FactoryBot.create(:myproduct)
-    get myproduct_path(product)
+    get myproduct_path(@product)
     expect(response).to be_successful
   end
 
   it "get edit " do
-    product = FactoryBot.create(:myproduct)
-    get edit_myproduct_path(product)
+    get edit_myproduct_path(@product)
     expect(response).to be_successful
   end
 
-  it "should delete" do
-    product = FactoryBot.create(:myproduct)
-    product.destroy
-    #delete "/myproducts/#{product.id}"
-    expect(Myproduct.find_by(name:"toy car")).to be_nil
+  it 'checks that a product can be updated' do
+    @product.update(:name => "CPU")
+    expect(Myproduct.find_by_name("CPU")).to eq(@product)
   end
 
+  it "should get create" do
+    expect do
+      post '/myproducts', params: { myproduct: { name: "abcd", description: "abc desc", price: "600", myuser_id: @user.id } }
+      end.to change(Myproduct, :count).by(1)
+    expect(response).to have_http_status(:redirect)  
+  end
+
+  it "should delete" do
+    @product.destroy
+    expect(Myproduct.find_by(name:"toy car")).to be_nil
+  end
 end
