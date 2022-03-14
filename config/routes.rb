@@ -58,4 +58,5 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
   resource :myusers
+  resources :user2s 
 end

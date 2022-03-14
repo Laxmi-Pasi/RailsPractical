@@ -1,0 +1,71 @@
+<%= form_with(model: @employee) do |form| %>
+  <div style="height:50%;width:50%;margin-left:25%;"> 
+    <div>
+      <%= form.label :first_name,"First Name", style: "display: block"%>
+      <%= form.text_field :first_name, class:"form-control" %>
+    </div>
+    <div>
+      <%= form.label :last_name,"Last Name", style: "display: block"%>
+      <%= form.text_field :last_name, class:"form-control" %>
+    </div>
+    <div>   
+      <%= form.label :email, style: "display: block" %>
+      <%= form.email_field :email,class:"form-control" %>
+    </div>
+    
+    <div>
+      <%= form.label :password,"Password", style: "display: block" %>
+      <%= form.password_field :password ,class:"form-control",id:"password", onkeyup:"check_pass();"%>
+    </div>
+    <div>
+      <%= form.label :password_confirmation,"Confirm Password", style: "display: block" %>
+      <%= form.password_field :password_confirmation ,id:"password_confirmation",class:"form-control",onkeyup: 'check_pass();'%>
+    </div>
+    <div id="subscription">
+      <%= form.check_box :subcription, id:"myCheck" %>
+      <%= form.label "subcription" %>
+    </div>
+    <div id="div" style="display:none;">   
+      <%= form.label :subscription_email, style: "display: block" %>
+      <%= form.email_field :subscription_email,class:"form-control",id:"subscription_email" %>
+    </div>
+    
+    <div id="submit" style="display:none;">
+      <%=form.submit form:{ data: { disable_with: "Saving..." } }%>
+    </div>
+</div>
+<% end %>
+<% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li style="color:red;"><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>
+<script>
+//for subscription email
+document.getElementById("myCheck").addEventListener("click", function() {
+    toggle('div');
+ });
+function toggle(obj) {
+    var el = document.getElementById(obj);
+    el.style.display = (el.style.display != 'none' ? 'none' : '' );
+}
+
+//for password confirmation
+// document.getElementById("password").addEventListener("change", check_pass);
+// document.getElementById("password_confirmation").addEventListener("change", check_pass);
+function check_pass() {
+  // console.log(document.getElementById('password').value)
+  // console.log("confirm"+document.getElementById('password_confirmation').value)
+  if (document.getElementById('password').value ==document.getElementById('password_confirmation').value) {
+     var el = document.getElementById("submit");
+     //el.style.display = (el.style.display != 'none' ? 'block' : 'none' );
+     el.style.display= 'block'
+     console.log(el.style.display)
+  } else {
+      el.style.display= 'none'
+  }
+}
+
+</script>
