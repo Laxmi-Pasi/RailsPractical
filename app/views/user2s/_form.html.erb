@@ -1,4 +1,4 @@
-<%= form_with(model: @employee) do |form| %>
+<%= form_with(model: @user, local: false) do |form| %>
   <div style="height:50%;width:50%;margin-left:25%;"> 
     <div>
       <%= form.label :first_name,"First Name", style: "display: block"%>
@@ -15,11 +15,13 @@
     
     <div>
       <%= form.label :password,"Password", style: "display: block" %>
-      <%= form.password_field :password ,class:"form-control",id:"password", onkeyup:"check_pass();"%>
+      <%= form.password_field :password ,class:"form-control",id:"password", onchange:"check_pass();"%>
+      <span id = "message" style="color:red"> </span>
     </div>
     <div>
       <%= form.label :password_confirmation,"Confirm Password", style: "display: block" %>
-      <%= form.password_field :password_confirmation ,id:"password_confirmation",class:"form-control",onkeyup: 'check_pass();'%>
+      <%= form.password_field :password_confirmation ,id:"password_confirmation",class:"form-control",onchange: 'check_pass();'%>
+      <span id = "message1" style="color:red"> </span>
     </div>
     <div id="subscription">
       <%= form.check_box :subcription, id:"myCheck" %>
@@ -31,14 +33,14 @@
     </div>
     
     <div id="submit" style="display:none;">
-      <%=form.submit form:{ data: { disable_with: "Saving..." } }%>
+      <%=form.submit "Submit" %>
     </div>
 </div>
 <% end %>
 <% if flash[:errors] %>
     <ul>
       <% flash[:errors].each do |error| %>
-        <li style="color:red;"><%= error %></li>
+          <li style="color:red;"><%= error %></li>
       <% end %>
     </ul>
 <% end %>
@@ -53,18 +55,23 @@ function toggle(obj) {
 }
 
 //for password confirmation
-// document.getElementById("password").addEventListener("change", check_pass);
-// document.getElementById("password_confirmation").addEventListener("change", check_pass);
 function check_pass() {
-  // console.log(document.getElementById('password').value)
-  // console.log("confirm"+document.getElementById('password_confirmation').value)
-  if (document.getElementById('password').value ==document.getElementById('password_confirmation').value) {
-     var el = document.getElementById("submit");
-     //el.style.display = (el.style.display != 'none' ? 'block' : 'none' );
-     el.style.display= 'block'
-     console.log(el.style.display)
+  var el = document.getElementById("submit");
+  var pw = document.getElementById('password').value
+  var cpw = document.getElementById('password_confirmation').value 
+  var regularExpression  = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  if(!regularExpression.test(pw)) {
+    document.getElementById("message").innerHTML=
+    "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+  }else{
+     document.getElementById("message").innerHTML=""
+  }
+  if (pw == cpw) {
+     el.style.display= 'block';
+      document.getElementById("message1").innerHTML="";
   } else {
-      el.style.display= 'none'
+      el.style.display= 'none';
+      document.getElementById("message1").innerHTML="Password and confirm Password must be same!";
   }
 }
 

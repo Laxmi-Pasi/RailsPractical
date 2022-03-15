@@ -14,30 +14,7 @@
  
   </head>
   <body>
-  <!-- this is code for active reord association -->
-  <!--  <nav class="navbar navbar-expand-sm bg-light justify-content-center">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-      <% if logged_in? %>
-        <li class="nav-item active">
-          <%=button_to 'Home', user_path(session[:user_id]), class:"btn btn-dark",method: 'get'%>
-        </li>
-        <li class="nav-item active">
-          <%=button_to 'Enroll', events_path, class:"btn btn-dark",method: 'get'%>
-        </li>
-        <li class="nav-item active">
-          <%=button_to 'Log Out', login_path(session[:user_id]), method: 'delete',class:"btn btn-dark"%>
-        </li>
-      <% else %>
-          <%=button_to 'Home', users_path, class:"btn btn-dark", method: 'get'%>
-      <% end %>
-      </ul>
-      </div>
-    </nav>
-    -->    
+ 
     <%= yield %>
   </body>
 </html>

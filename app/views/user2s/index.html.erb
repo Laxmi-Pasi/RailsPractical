@@ -1,1 +1,44 @@
+<table class="table table-bordered table-hover">
+  <tr><center>users Details </center></tr>
+  <tr class="table table-dark">
+    <td>First Name</td><td>Last Name</td><td>Email</td><td>Show</td>
+    <td>Edit</td><td>Delete</td>
+  </tr>
+  <% @users.each do |s| %>
+    <tr>
+      <td><%=s.first_name %></td>
+      <td><%=s.last_name %></td>
+      <td><%=s.email  %></td>
+      <td><%= button_to 'Show', user2_path(s), method: 'get', class:"btn btn-info"%></td>
+      <td><%= button_to 'Edit', profile_user2_path(s), method: 'get', class:" btn btn-dark"%></td>
+      <td><%= button_to 'delete', user2_path(s), method: 'delete',class:"btn btn-danger",form: {data: {turbo_confirm: 'Are you sure?'}} %></td>  
+    </tr>
+  <% end %>
+</table>
+
+
   <%= link_to "Add a New User", new_user2_path %>
+<div id="result">
+   
+</div>
+
+
+<br>
+
+<%= form_with(model: @user,  local: false, id:"new_stack", onsubmit:"fun()") do |form| %>
+  <%= form.label :first_name %><br>
+  <%= form.text_field :first_name %>
+  <%= form.submit %>
+<% end %>
+
+<script>
+function fun(){
+  $.ajax({
+      method:'POST',
+      url: '/user2s',
+      dataType: "script",
+      //format: "js",
+      data: $("#new_stack").serialize()
+    });
+}
+</script>

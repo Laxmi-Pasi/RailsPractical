@@ -1,2 +1,30 @@
-<h1>User2s#show</h1>
-<p>Find me in app/views/user2s/show.html.erb</p>
+<center>
+<% if flash[:notice] %> 
+  <% flash.each do |name,msg| %>
+    <h3 style="color:green;"><%= msg %></h3>
+  <% end %>
+<% end %>
+<div>
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.first_name %>
+  </p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+  <p>
+    <strong>Subscription Email:</strong>
+    <%= @user.subscription_email%>
+  </p>
+ </div>
+  <div>
+    <%= link_to "Edit this user", profile_user2_path(@user) %> |
+    <%= link_to "back to user", user2s_path %> |
+    <%= button_to "Destroy this this", @user, method: :delete %>
+  </div>
+</center>
