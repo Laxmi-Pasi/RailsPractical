@@ -11,24 +11,24 @@ class User2sController < ApplicationController
 
   def create
     @user = User2.new(user_params)
-    # if @user.save
-    #   flash[:notice]= "created"
-    #   redirect_to user2_path(@user)
-    # else
-    #   flash[:errors] = @user.errors.full_messages
-    #   redirect_to new_user2_path
-    # end
-    respond_to do |format|
-      if @user.save
-        #format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
-        #format.json { render :show, status: :created, location: @customer }
-        format.js
-      else
-        format.js
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:notice]= "created"
+      redirect_to user2_path(@user)
+    else
+      flash[:errors] = @user.errors.full_messages
+      redirect_to new_user2_path
     end
+    # respond_to do |format|
+    #   if @user.save
+    #     #format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+    #     #format.json { render :show, status: :created, location: @customer }
+    #     format.js
+    #   else
+    #     format.js
+    #     #format.html { render :new, status: :unprocessable_entity }
+    #     #format.json { render json: @customer.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def show
@@ -51,11 +51,11 @@ class User2sController < ApplicationController
   end
 
   def change_password
+    @pw = User2.find(params[:id])
   end
 
   def update_pw
     @user = User2.find(params[:id])
-   #binding.pry
     if @user.update(password: params[:new_password],password_confirmation: params[:password_confirmation])
       flash[:notice] = "updated successfully"
       redirect_to user2_path
@@ -74,9 +74,5 @@ class User2sController < ApplicationController
   private
     def user_params
       params.require(:user2).permit(:first_name, :last_name,:email, :password, :subcription,:subscription_email,:password_confirmation)
-    end
-
-    def pw_params
-      params.require(:user2).permit(:password,:password_confirmation)
     end
 end

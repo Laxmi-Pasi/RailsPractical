@@ -25,7 +25,7 @@
 
 <br>
 
-<%= form_with(model: @user,  local: false, id:"new_stack", onsubmit:"fun()") do |form| %>
+<%= form_with(model: @user,  local: false) do |form| %>
   <%= form.label :first_name %><br>
   <%= form.text_field :first_name %>
   <%= form.submit %>

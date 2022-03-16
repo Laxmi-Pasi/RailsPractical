@@ -10,7 +10,7 @@
     </div>
     <div>   
       <%= form.label :email, style: "display: block" %>
-      <%= form.email_field :email,class:"form-control",onchange:"check_pass();" %>
+      <%= form.email_field :email,class:"form-control",onchange:"check_pass();", id:"email"%>
     </div>
     
     <div id="obj" style="display:none;">
@@ -56,7 +56,12 @@
     el.style.display = (el.style.display != 'none' ? 'none' : '' );
   }
   function check_pass(){
-    document.getElementById("obj").style.display = "block";
+    var email = "<%=@user.email%>";
+    if(email != document.getElementById("email").value){
+      document.getElementById("obj").style.display = "block";
+    }else{
+      document.getElementById("obj").style.display = "none";
+    }
   } 
 
 </script>
