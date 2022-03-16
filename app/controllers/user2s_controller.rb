@@ -1,6 +1,5 @@
 class User2sController < ApplicationController
   def index
-    #binding.pry
     @users = User2.all
     @user = User2.new
   end
@@ -18,17 +17,6 @@ class User2sController < ApplicationController
       flash[:errors] = @user.errors.full_messages
       redirect_to new_user2_path
     end
-    # respond_to do |format|
-    #   if @user.save
-    #     #format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
-    #     #format.json { render :show, status: :created, location: @customer }
-    #     format.js
-    #   else
-    #     format.js
-    #     #format.html { render :new, status: :unprocessable_entity }
-    #     #format.json { render json: @customer.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def show
@@ -41,12 +29,15 @@ class User2sController < ApplicationController
   
   def update_profile
     @user = User2.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "updated successfully"
-      redirect_to user2_path
-    else
-      flash[:errors] = @user.errors.full_messages
-      redirect_to profile_user2_path(@user)
+    @previous = User2.find(params[:id])
+    respond_to do |format|  
+      if @user.update(user_params)
+        flash.now[:notice] = "Profile updated successfully"
+        format.js
+      else
+        flash.now[:errors] =  @user.errors.full_messages
+        format.js
+      end
     end
   end
 
@@ -56,8 +47,8 @@ class User2sController < ApplicationController
 
   def update_pw
     @user = User2.find(params[:id])
-    if @user.update(password: params[:new_password],password_confirmation: params[:password_confirmation])
-      flash[:notice] = "updated successfully"
+    if @user.update_attribute(:password,params[:new_password])
+      flash[:notice] = "Password updated successfully"
       redirect_to user2_path
     else
       flash[:errors] = @user.errors.full_messages

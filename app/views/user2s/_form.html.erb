@@ -1,38 +1,52 @@
-<%= form_with(model: @user, local: false) do |form| %>
-  <div style="height:50%;width:50%;margin-left:25%;"> 
-    <div>
-      <%= form.label :first_name,"First Name", style: "display: block"%>
+
+<%= form_with(model: @user) do |form| %>
+  <div style="height:50%;width:50%;margin-left:25%;" class="row"> 
+    
+    <div class="mb-3 row">
+      <%= form.label :first_name,"First Name", class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
       <%= form.text_field :first_name, class:"form-control" %>
+      </div>
     </div>
-    <div>
-      <%= form.label :last_name,"Last Name", style: "display: block"%>
+    <div class="mb-3 row">
+      <%= form.label :last_name,"Last Name", class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
       <%= form.text_field :last_name, class:"form-control" %>
+      </div>
     </div>
-    <div>   
-      <%= form.label :email, style: "display: block" %>
+    <div class="mb-3 row">   
+      <%= form.label :email, class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
       <%= form.email_field :email,class:"form-control" %>
+      </div>
     </div>
     
-    <div>
-      <%= form.label :password,"Password", style: "display: block" %>
+    <div class="mb-3 row">
+      <%= form.label :password,"Password", class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
       <%= form.password_field :password ,class:"form-control",id:"password", onchange:"check_pass();"%>
+      </div>
       <span id = "message" style="color:red"> </span>
     </div>
-    <div>
-      <%= form.label :password_confirmation,"Confirm Password", style: "display: block" %>
+    <div class="mb-3 row">
+      <%= form.label :password_confirmation,"Confirm Password", class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
       <%= form.password_field :password_confirmation ,id:"password_confirmation",class:"form-control",onchange: 'check_pass();'%>
+      </div>
       <span id = "message1" style="color:red"> </span>
     </div>
-    <div id="subscription">
+    <div id="subscription" class="mb-3">
       <%= form.check_box :subcription, id:"myCheck" %>
-      <%= form.label "subcription" %>
+      <%= form.label "subscription" %>
     </div>
-    <div id="div" style="display:none;">   
-      <%= form.label :subscription_email, style: "display: block" %>
+    <div id="div" style="display:none;" class="mb-3 row">   
+      <%= form.label :subscription_email , class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
       <%= form.email_field :subscription_email,class:"form-control",id:"subscription_email" %>
+      </div>
     </div>
     
-    <div id="submit" style="display:none;">
+    <div id="submit" style="display:none;" class="mb-3 btn">
       <%=form.submit "Submit" %>
     </div>
 </div>
