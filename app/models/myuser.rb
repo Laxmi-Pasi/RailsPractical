@@ -3,6 +3,9 @@ class Myuser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :myproducts, :dependent => :destroy
 
-  enum role: [:merchant, :admin]
+  validates :role, presence: true
+
+  #enum role: [:merchant, :admin]
 end

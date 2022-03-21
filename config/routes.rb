@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'myuser#home'
-  get 'home', to:'myuser#home'
+  root 'myusers#home'
+  get 'home', to:'myusers#home'
   devise_for :myusers
   resources :categories
   resources :users, except: [:new]
