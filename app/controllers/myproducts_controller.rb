@@ -1,4 +1,5 @@
 class MyproductsController < ApplicationController
+  before_action :merchant_show, except: [:show, :index]
   before_action :user_authentication
   before_action :set_product, only: %i[ show edit update destroy ]
   layout :check_for_user
@@ -49,7 +50,7 @@ class MyproductsController < ApplicationController
   end
 
   def product_params
-    params.require(:myproduct).permit(:name, :price, :description)
+    params.require(:myproduct).permit(:name, :price, :description, :myuser_id)
   end
 
   def check_for_user
@@ -60,6 +61,13 @@ class MyproductsController < ApplicationController
   def user_authentication
     if !current_myuser
       flash[:notice]="Before action, Please login or sign up!"
+      redirect_to root_path
+    end
+  end
+
+  def merchant_show
+    if current_myuser.role=='merchant'
+      flash[:notice]="merchant can only view the product"
       redirect_to root_path
     end
   end

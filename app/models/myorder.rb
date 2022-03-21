@@ -1,5 +1,5 @@
 class Myorder < ApplicationRecord
-  belongs_to :myproduct
+  #belongs_to :myproduct //commented when you are using unit testing
   validates :quantity, presence: true
   before_save :add_total_price
 

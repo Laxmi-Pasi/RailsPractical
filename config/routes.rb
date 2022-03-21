@@ -40,7 +40,6 @@ Rails.application.routes.draw do
   # resources :myproducts do
   #   resources :myorders
   # end
-  
   # namespace :business do
   #   resources :mycustomers, only: [:index, :edit, :create] do
   #     get 'search', on: :collection
@@ -66,4 +65,20 @@ Rails.application.routes.draw do
       patch :update_pw
     end
   end
+  get "/search", to: "form_helper_employees#search"
+  get 'signup', to: 'users#new'
+  get "login", to: 'sessions#new'
+  get "user_events",to: 'users#user_events'
+  post 'login', to: 'sessions#create'
+  delete 'login', to: 'sessions#destroy'
+
+  namespace :api do
+    namespace :v1 do
+      resources :myarticles
+      resources :article_comments
+      get "title_search", to: 'myarticles#article_search'
+      get "comment_search", to: 'article_comments#comment_search'
+    end
+  end
+  resource :myusers
 end
