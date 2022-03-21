@@ -1,0 +1,34 @@
+<div class="center">
+<% if flash[:notice] %> 
+  <% flash.each do |name,msg| %>
+    <h3 style="color:green;"><%= msg %></h3>
+  <% end %>
+<% end %>
+<div class="d-flex flex-column justify-content-start">
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.first_name %>
+  </p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+   <p>
+    <strong>Password:</strong>
+    <%= @user.password %>
+  </p>
+  <p>
+    <strong>Subscription Email:</strong>
+    <%= @user.subscription_email%>
+  </p>
+ </div>
+  <div class="d-flex flex-column justify-content-start align-items-start">
+    <p><%= link_to "Edit this user", profile_user2_path(@user) %></p> 
+    <p><%= link_to "back to user", user2s_path %> </p> 
+    <p><%= button_to "Destroy this this", @user, method: :delete %></p>
+  </div>
+</div>

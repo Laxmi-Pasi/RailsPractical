@@ -1,0 +1,92 @@
+
+<%= form_with(model: @user) do |form| %>
+  <div style="height:50%;width:50%;margin-left:25%;" class="row"> 
+    
+    <div class="mb-3 row">
+      <%= form.label :first_name,"First Name", class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :first_name, class:"form-control" %>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <%= form.label :last_name,"Last Name", class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :last_name, class:"form-control" %>
+      </div>
+    </div>
+    <div class="mb-3 row">   
+      <%= form.label :email, class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+      <%= form.email_field :email,class:"form-control" %>
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <%= form.label :password,"Password", class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+      <%= form.password_field :password ,class:"form-control",id:"password", onchange:"check_pass();"%>
+      </div>
+      <span id = "message" style="color:red"> </span>
+    </div>
+    <div class="mb-3 row">
+      <%= form.label :password_confirmation,"Confirm Password", class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+      <%= form.password_field :password_confirmation ,id:"password_confirmation",class:"form-control",onchange: 'check_pass();'%>
+      </div>
+      <span id = "message1" style="color:red"> </span>
+    </div>
+    <div id="subscription" class="mb-3">
+      <%= form.check_box :subcription, id:"myCheck" %>
+      <%= form.label "subscription" %>
+    </div>
+    <div id="div" style="display:none;" class="mb-3 row">   
+      <%= form.label :subscription_email , class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.email_field :subscription_email,class:"form-control",id:"subscription_email" %>
+      </div>
+    </div>
+    
+    <div id="submit" style="display:none;" class="mb-3 btn">
+      <%=form.submit "Submit" %>
+    </div>
+</div>
+<% end %>
+<% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+          <li style="color:red;"><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>
+<script>
+//for subscription email
+document.getElementById("myCheck").addEventListener("click", function() {
+    toggle('div');
+ });
+function toggle(obj) {
+    var el = document.getElementById(obj);
+    el.style.display = (el.style.display != 'none' ? 'none' : '' );
+}
+
+//for password confirmation
+function check_pass() {
+  var el = document.getElementById("submit");
+  var pw = document.getElementById('password').value
+  var cpw = document.getElementById('password_confirmation').value 
+  var regularExpression  = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  if(!regularExpression.test(pw)) {
+    document.getElementById("message").innerHTML=
+    "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+  }else{
+     document.getElementById("message").innerHTML=""
+  }
+  if (pw == cpw) {
+     el.style.display= 'block';
+      document.getElementById("message1").innerHTML="";
+  } else {
+      el.style.display= 'none';
+      document.getElementById("message1").innerHTML="Password and confirm Password must be same!";
+  }
+}
+
+</script>

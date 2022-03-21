@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_09_123727) do
+ActiveRecord::Schema.define(version: 2022_03_14_100329) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,8 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_123727) do
     t.string "comment"
     t.date "date_of_comment"
     t.integer "myarticle_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "articles", force: :cascade do |t|
@@ -188,8 +188,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_123727) do
     t.string "title"
     t.string "body"
     t.date "release_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
   create_table "mycustomers", force: :cascade do |t|
     t.string "name"
@@ -211,8 +211,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_123727) do
     t.string "name"
     t.float "price"
     t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "myuser_id"
     t.index ["myuser_id"], name: "index_myproducts_on_myuser_id"
   end
@@ -260,6 +260,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_123727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "terms_of_service"
+  end
+
+  create_table "user2s", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.boolean "subcription"
+    t.string "subscription_email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "password_confirmation"
   end
 
   create_table "users", force: :cascade do |t|

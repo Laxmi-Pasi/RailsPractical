@@ -1,0 +1,81 @@
+<center> Update Profile </center>
+<%= form_with(model: @user, method: :patch, url:update_profile_user2_path, local:false ) do |form| %>
+  <div style="height:50%;width:50%;margin-left:25%;" class="row" > 
+    <div class="mb-3 row">
+      <%= form.label :first_name,"First Name", class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :first_name, class:"form-control" %>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <%= form.label :last_name,"Last Name", class:"col-sm-3 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :last_name, class:"form-control" %>
+      </div>
+    </div>
+    <div class="mb-3 row">   
+      <%= form.label :email, class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+      <%= form.email_field :email,class:"form-control",onchange:"check_pass();", id:"email" %>
+      </div>
+    </div>
+    <div class="mb-3 row" id="obj" style="display:none;">
+      <%= form.label :password,"Password", class:"col-sm-3 col-form-label" %>
+      <div class="col-sm-8">
+        <%= form.password_field :password ,class:"form-control"%>
+      </div>
+    </div>
+    <div id="subscription" class="mb-3">
+      <%= form.check_box :subcription, id:"myCheck" %>
+      <%= form.label "subscription" %>
+    </div>
+    <% if @user.subcription %>
+      <div id="div"  class="mb-3 row">   
+        <%= form.label :subscription_email , class:"col-sm-3 col-form-label"%>
+        <div class="col-sm-9">
+        <%= form.email_field :subscription_email,class:"form-control",id:"subscription_email" %>
+        </div>
+      </div>
+    <% else %>
+       <div id="div" style="display:none;">   
+        <%= form.label :subscription_email, style: "display: block" %>
+        <%= form.email_field :subscription_email,class:"form-control",id:"subscription_email" %>
+      </div>
+    <% end %>
+    <div id="submit" class="mb-3 btn">
+      <%=form.submit  data: { disable_with: "Saving..." } %>
+    </div>
+  </div>
+<% end %>
+<div class="center">
+  <div id="result">
+  </div>
+
+  <% if flash[:errors] %>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li style="color:red;"><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= link_to "Change Paasword", change_password_user2_path(@user) %>
+</div>
+
+<script>
+//for subscription email
+  document.getElementById("myCheck").addEventListener("click", function() {
+    toggle('div');
+  });
+  function toggle(obj) {
+    var el = document.getElementById(obj);
+    el.style.display = (el.style.display != 'none' ? 'none' : '' );
+  }
+  function check_pass(){
+    var email = "<%=@user.email%>";
+    if(email != document.getElementById("email").value){
+      document.getElementById("obj").style.display = "flex";
+    }else{
+      document.getElementById("obj").style.display = "none";
+    }
+  } 
+</script>
