@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'myuser#home'
+  get 'home', to:'myuser#home'
+  devise_for :myusers
   resources :categories
   resources :users, except: [:new]
   resources :events, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
@@ -7,7 +10,6 @@ Rails.application.routes.draw do
       get :unenroll
     end
   end
-  resources :customers
   resources :products, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     collection do
       get :display_all_products
@@ -32,8 +34,24 @@ Rails.application.routes.draw do
   resources :products
   resources :students
   resources :faculties
-  root "articles#index"
-  get "/articles", to: "articles#index"
+  #root "articles#index"
+  #root "myproducts#index"
+  # get "/articles", to: "articles#index"
+  resources :myproducts do
+    resources :myorders
+  end
+  
+  namespace :business do
+    resources :mycustomers, only: [:index, :edit, :create] do
+      get 'search', on: :collection
+      get 'preview', on: :member
+      delete 'delete_customer', on: :member
+      get 'new', on: :collection, as: 'new'
+      patch 'update', on: :member
+    end
+  end
+
+  get "/search", to: "form_helper_employees#search"
   get 'signup', to: 'users#new'
   get "login", to: 'sessions#new'
   get "user_events",to: 'users#user_events'
@@ -48,4 +66,5 @@ Rails.application.routes.draw do
       get "comment_search", to: 'article_comments#comment_search'
     end
   end
+  resource :myusers
 end

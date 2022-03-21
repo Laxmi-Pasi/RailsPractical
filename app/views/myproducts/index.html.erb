@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <tr><center>Products Details </center></tr>
+  <tr class="table table-dark">
+  <td>Id</td><td>Name</td><td>Price</td><td>Show</td>
+  <% if current_myuser.role=='admin' %>
+    <td>Edit</td><td>Delete</td>
+  <% end %>
+  </tr>
+  <% @products.each do |s| %>
+    <tr>
+      <td><%=s.id %></td>
+      <td><%=s.name %></td>
+      <td><%=s.price %></td>
+      <td><%= button_to 'Show', myproduct_path(s), method: 'get',class:"btn btn-info"%></td>
+      <% if current_myuser.role=='admin' %>
+        <td><%= button_to 'Edit', edit_myproduct_path(s), method: 'get',class:"btn btn-dark"%></td>
+        <td><%= button_to 'Remove', myproduct_path(s), method: 'delete',class:"btn btn-danger"%></td>  
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<% if current_myuser.role=='admin' %>
+  <%= link_to "Add a New Product", new_myproduct_path %> <br/>
+<% end %>

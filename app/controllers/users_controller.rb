@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "user"
   def show
     @user=User.find(session[:user_id])
     if session[:user_id] && params[:event_id]

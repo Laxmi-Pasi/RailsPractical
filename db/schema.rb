@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2022_03_02_110858) do
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -121,6 +123,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_02_110858) do
     t.integer "form_helper_employee_id"
   end
 
+  create_table "emp_addresses", force: :cascade do |t|
+    t.string "house_name"
+    t.string "street_name"
+    t.string "road"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "form_helper_employee_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -175,6 +186,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_02_110858) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "form_helper_employees", force: :cascade do |t|
+    t.string "employee_name"
+    t.string "email"
+    t.string "password"
+    t.string "gender"
+    t.string "hobbies"
+    t.string "address"
+    t.integer "mobile_number"
+    t.date "birth_date"
+    t.string "document"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "img_name"
     t.integer "author_id"
@@ -191,7 +216,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_02_110858) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
   create_table "mycustomers", force: :cascade do |t|
     t.string "name"
     t.string "email"
