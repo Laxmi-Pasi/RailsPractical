@@ -57,5 +57,14 @@ Rails.application.routes.draw do
   get "user_events",to: 'users#user_events'
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
+
+  namespace :api do
+    namespace :v1 do
+      resources :myarticles
+      resources :article_comments
+      get "title_search", to: 'myarticles#article_search'
+      get "comment_search", to: 'article_comments#comment_search'
+    end
+  end
   resource :myusers
 end
