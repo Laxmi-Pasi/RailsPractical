@@ -23,7 +23,6 @@ class MailUsersController < ApplicationController
       MailUsersMailer.with(user: @user).welcome_email.deliver_later
       redirect_to mail_user_path(@user)
     else
-      #@user.errors.add(:picture, "can't be nil") if @user.picture.file.nil?
       flash[:errors] = @user.errors.full_messages
       redirect_to new_mail_user_path
     end

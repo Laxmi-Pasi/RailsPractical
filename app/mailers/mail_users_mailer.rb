@@ -12,8 +12,6 @@ class MailUsersMailer < ApplicationMailer
 
   def update_email
     @user = params[:user]
-    #@url  = 'http://example.com/login'
-    #attachments.inline['filename.jpg'] = File.read("/home/laxmipasi/Documents/projects/RailsPractical/public/#{@user.picture.url}")
     mail(to: @user.email, subject: 'Update Email') do |format|
       format.html { render layout: 'update_email' }
     end
