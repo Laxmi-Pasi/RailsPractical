@@ -12,7 +12,7 @@ module RailsPractical
     config.load_defaults 7.0
 
     #adding api
-    config.api_only = true
+    config.api_only = false
 
     # Configuration for the application, engines, and railties goes here.
     #

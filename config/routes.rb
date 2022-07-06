@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'myuser#home'
   get 'home', to:'myuser#home'
+  resources :mail_users
   devise_for :myusers
   resources :categories
   resources :users, except: [:new]
@@ -74,4 +75,5 @@ Rails.application.routes.draw do
       get "comment_search", to: 'article_comments#comment_search'
     end
   end
+
 end

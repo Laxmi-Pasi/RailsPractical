@@ -1,0 +1,16 @@
+<table class="table table-bordered table-hover">
+  <tr><center>users Details </center></tr>
+  <tr class="table table-dark">
+    <td>Name</td><td>Email</td><td>Show</td><td>Edit</td><td>Delete</td>
+  </tr>
+  <% @users.each do |s| %>
+    <tr>
+      <td><%=s.name %></td>
+      <td><%=s.email  %></td>
+      <td><%= button_to 'Show', mail_user_path(s), method: 'get', class:"btn btn-info"%></td>
+      <td><%= button_to 'edit', edit_mail_user_path(s), method: 'get', class:" btn btn-dark"%></td>
+      <td><%= button_to 'delete', mail_user_path(s), method: 'delete',class:"btn btn-danger",form: {data: {turbo_confirm: 'Are you sure?'}} %></td>  
+    </tr>
+  <% end %>
+</table>
+<%= link_to "Add a New User", new_mail_user_path %>

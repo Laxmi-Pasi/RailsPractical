@@ -1,0 +1,25 @@
+<div class="center">
+  <% if flash[:notice] %>
+    <p style="color:green"><%=notice%></p>
+  <% end %>
+  <div class="d-flex flex-column justify-content-start">
+    <p>
+      <strong>Name:</strong>
+      <%= @user.name %>
+    </p>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+    <p>
+      <strong>Picture:</strong>
+      <%= image_tag(@user.picture.url(:thumb)) %>
+    </p>
+  </div>
+    <div class="d-flex flex-column justify-content-start align-items-start">
+      <p><%= link_to "Edit this user", edit_mail_user_path(@user) %></p> 
+      <p><%= link_to "back to user",mail_users_path%> </p> 
+      <p><%= button_to "Destroy this this", @user, method: :delete %></p>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_100329) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_24_102238) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 2022_03_14_100329) do
     t.string "comment"
     t.date "date_of_comment"
     t.integer "myarticle_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "articles", force: :cascade do |t|
@@ -161,6 +161,12 @@ ActiveRecord::Schema.define(version: 2022_03_14_100329) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "form_helper_employees", force: :cascade do |t|
     t.string "employee_name"
     t.string "email"
@@ -184,13 +190,22 @@ ActiveRecord::Schema.define(version: 2022_03_14_100329) do
     t.decimal "img_size"
   end
 
+  create_table "mail_users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "myarticles", force: :cascade do |t|
     t.string "title"
     t.string "body"
     t.date "release_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
   create_table "mycustomers", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -211,8 +226,8 @@ ActiveRecord::Schema.define(version: 2022_03_14_100329) do
     t.string "name"
     t.float "price"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "myuser_id"
     t.index ["myuser_id"], name: "index_myproducts_on_myuser_id"
   end
@@ -269,8 +284,8 @@ ActiveRecord::Schema.define(version: 2022_03_14_100329) do
     t.string "password"
     t.boolean "subcription"
     t.string "subscription_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "password_confirmation"
   end
 

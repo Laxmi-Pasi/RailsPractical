@@ -85,4 +85,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'rspec-rails'
   gem "rails-controller-testing"
+  gem "letter_opener"
 end
+gem 'carrierwave', '~> 2.0'
+gem "image_processing", ">= 1.2"
